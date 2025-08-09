@@ -4,17 +4,40 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 24px;
+  grid-template-rows: repeat(2, auto);
+  gap: 32px 48px;
+  background: #fff;
+  width: 100%;
+  align-items: start;
 }
 
 .cards > ul > li {
-  border: 1px solid #dadada;
+  border: none;
   background-color: var(--background-color);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
 }
 
 .cards .cards-card-body {
-  margin: 16px;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0;
+  min-height: 24px;
+  font-family: var(--body-font-family);
+  font-size: 12px;
+  line-height: 1.4;
+  color: #222;
+  font-weight: 400;
 }
 
 .cards .cards-card-image {
@@ -50,7 +73,6 @@
   min-height: 110px;
 }
 
-/* Image column */
 .cards.cards33 .cards-card-image {
   flex: 0 0 40%;
   max-width: 40%;
@@ -70,7 +92,6 @@
   display: block;
 }
 
-/* Text column */
 .cards.cards33 .cards-card-body {
   flex: 1 1 60%;
   max-width: 60%;
@@ -82,7 +103,6 @@
   padding: 0;
 }
 
-/* Meta row: pill + read time inline, tightly grouped */
 .cards.cards33 .cards-card-body > p:first-child,
 .cards.cards33 .cards-card-body > p:nth-child(2) {
   display: inline-flex;
@@ -109,7 +129,6 @@
   margin-right: 0;
 }
 
-/* Ensure pill + read time are in one row above title, with minimal spacing */
 .cards.cards33 .cards-card-body > p:first-child + p {
   margin-right: 0;
 }
@@ -118,7 +137,6 @@
   margin-top: 2px;
 }
 
-/* Title styling */
 .cards.cards33 .cards-card-body h3 {
   font-size: 1.13rem;
   font-family: var(--heading-font-family);
@@ -131,7 +149,6 @@
   padding: 0;
 }
 
-/* Description paragraph */
 .cards.cards33 .cards-card-body h3 + p {
   font-size: 1rem;
   color: #555;
@@ -142,7 +159,6 @@
   line-height: 1.22;
 }
 
-/* "Read" link styling */
 .cards.cards33 .cards-card-body .button-container .button {
   color: var(--link-color);
   background: none;
@@ -173,7 +189,6 @@
   background: none;
 }
 
-/* Responsive: stack cards vertically below 900px, image above text */
 @media (width <= 900px) {
   .cards.cards33 > ul {
     grid-template-columns: 1fr;
@@ -198,4 +213,47 @@
     margin-bottom: 8px;
     margin-right: 0;
   }
+}
+
+
+.cards {
+  background: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (width <= 1000px) {
+  .cards {
+    padding: 0 12px;
+  }
+
+  .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 20px 24px;
+  }
+}
+
+@media (width <= 600px) {
+  .cards {
+    padding: 0 4px;
+  }
+
+  .cards > ul {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 14px 0;
+  }
+}
+
+.cards .cards-card-body p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #222;
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  word-break: break-word;
+  hyphens: auto;
 }
