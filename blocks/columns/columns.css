@@ -31,3 +31,114 @@
     order: unset;
   }
 }
+
+
+.columns.columns3 > div {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 120px;
+  width: 100%;
+  padding: 40px 0 32px;
+  background: #fff;
+}
+
+@media (width <= 900px) {
+  .columns.columns3 > div {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+    padding: 24px 0;
+  }
+}
+
+/* Left column (heading & paragraph) */
+.columns.columns3 > div > div:first-child {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 1vw;
+}
+
+.columns.columns3 > div > div:first-child h2 {
+  margin-top: 0;
+  margin-bottom: 12px; /* tighter gap to paragraph for visual compactness */
+  font-size: 2.4rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.columns.columns3 > div > div:first-child p {
+  color: #222;
+  font-size: 1rem;
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.5;
+  max-width: 540px;
+}
+
+/* Right column (button stack) */
+.columns.columns3 > div > div:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18px;
+  min-width: 220px;
+  margin-top: 0;
+  margin-right: 1vw;
+
+  /* Use translateY to nudge the button stack up to match heading top */
+  transform: translateY(-6px);
+}
+
+@media (width <= 900px) {
+  .columns.columns3 > div > div:last-child {
+    align-items: stretch;
+    min-width: 0;
+    margin-top: 0;
+    margin-right: 0;
+    gap: 14px;
+    transform: none;
+  }
+}
+
+/* Pill-shaped button links */
+.columns.columns3 > div > div:last-child a {
+  display: block;
+  width: 200px;
+  padding: 10px 0;
+  border: 1px solid #000;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  margin: 0 auto;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  outline: none;
+}
+
+.columns.columns3 > div > div:last-child a:first-child {
+  border-top: 2px solid #FFFB00;
+}
+
+.columns.columns3 > div > div:last-child a:focus {
+  box-shadow: 0 0 0 2px #FFFB0033;
+}
+
+@media (width <= 900px) {
+  .columns.columns3 > div > div:last-child a {
+    width: 100%;
+    max-width: 340px;
+  }
+}
