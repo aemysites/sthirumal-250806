@@ -1,4 +1,3 @@
-/* stylelint-disable no-descending-specificity */
 .columns > div {
   display: flex;
   flex-direction: column;
@@ -34,153 +33,6 @@
 }
 
 
-.columns.columns3 {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding-top: 1vw;
-  padding-bottom: 1.2vw;
-  column-gap: 1vw;
-}
-
-@media (width <= 899px) {
-  .columns.columns3 {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 24px 0 10px;
-    gap: 2vw 0;
-  }
-}
-
-.columns.columns3 > div {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-  gap: 1vw;
-}
-
-@media (width <= 899px) {
-  .columns.columns3 > div {
-    flex-direction: column;
-    gap: 2vw;
-  }
-}
-
-.columns.columns3 > div > div:first-child {
-  flex: 1 1 0;
-  min-width: 260px;
-  max-width: 540px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-top: 0;
-}
-
-.columns.columns3 h2 {
-  font-family: Syncopate, 'Syncopate Fallback', sans-serif;
-  font-size: var(--heading-font-size-xl);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  line-height: 1.1;
-  color: #131313;
-  margin-bottom: 0.85rem;
-  margin-top: 0;
-}
-
-.columns.columns3 > div > div:first-child p {
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size-s);
-  color: #505050;
-  margin-top: 1.2em;
-  margin-bottom: 0;
-  line-height: 1.45;
-  max-width: 480px;
-}
-
-.columns.columns3 > div > div:last-child {
-  flex: 0 0 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1.15em;
-  margin-top: 1.45em;
-  align-self: flex-start;
-}
-
-@media (width <= 899px) {
-  .columns.columns3 > div > div:last-child {
-    flex: 1 1 100%;
-    margin-top: 2vw;
-    gap: 1em;
-    align-items: stretch;
-    align-self: auto;
-  }
-}
-
-.columns.columns3 > div > div:last-child p {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.15em;
-  align-items: center;
-}
-
-@media (width <= 899px) {
-  .columns.columns3 > div > div:last-child p {
-    gap: 1em;
-    align-items: stretch;
-  }
-}
-
-.columns.columns3 > div > div:last-child a {
-  display: block;
-  width: 180px;
-  min-width: 110px;
-  padding: 0.7em 0;
-  border: 1.5px solid #131313;
-  border-radius: 100px;
-  background: #fff;
-  color: #131313;
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size-s);
-  font-weight: 400;
-  text-align: center;
-  text-decoration: none;
-  transition: border-color 0.2s, background 0.2s;
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.columns.columns3 > div > div:last-child a:first-child {
-  border-top: 2px solid #f9f900;
-}
-
-.columns.columns3 > div > div:last-child a:hover,
-.columns.columns3 > div > div:last-child a:focus {
-  border-color: #505050;
-  background: #f8f8f8;
-}
-
-@media (width <= 899px) {
-  .columns.columns3 > div > div:last-child a {
-    width: 100%;
-    min-width: 100px;
-    font-size: var(--body-font-size-xs);
-  }
-}
-
-.columns.columns3 > div > div:last-child p,
-.columns.columns3 > div > div:last-child {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-
 .columns.columns29 > div {
   display: flex;
   flex-direction: row;
@@ -199,7 +51,7 @@
   align-items: stretch;
   min-width: 0;
   min-height: 0;
-  aspect-ratio: 5 / 4; /* Slightly taller than square for a more natural block shape */
+  aspect-ratio: 5 / 4;
 }
 
 .columns.columns29 .columns-img-col picture,
@@ -216,7 +68,6 @@
   height: 100%;
 }
 
-/* Responsive: stack images vertically on small screens and use a wider aspect ratio */
 @media (width <= 700px) {
   .columns.columns29 > div {
     flex-direction: column;
@@ -228,4 +79,140 @@
   .columns.columns29 .columns-img-col {
     aspect-ratio: 4 / 3;
   }
+}
+
+
+.columns.columns3 {
+  /* The block fills available space for vertical centering */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 60vh;
+  background: #fff;
+}
+
+@media (width <= 899px) {
+  .columns.columns3 {
+    min-height: unset;
+    padding: 2rem 0 1.5rem;
+  }
+}
+
+.columns.columns3 > div {
+  /* Side-by-side layout for headline+description (left) and buttons (right) */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6vw;
+  width: 100%;
+
+  /* Remove padding here, apply it to parent for consistency */
+}
+
+@media (width <= 899px) {
+  .columns.columns3 > div {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+  }
+}
+
+.columns.columns3 > div > div:first-child {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 260px;
+  max-width: 560px;
+  row-gap: 0.9rem;
+}
+
+.columns.columns3 h2 {
+  font-family: Syncopate, 'Syncopate Fallback', sans-serif;
+  font-weight: 400;
+  font-size: 2.5rem;
+  letter-spacing: 0.03em;
+  color: #000;
+  line-height: 1.1;
+  margin: 0 0 1.1rem;
+}
+
+.columns.columns3 > div > div:first-child p {
+  font-family: var(--body-font-family);
+  color: #464646;
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.45;
+  max-width: 520px;
+}
+
+.columns.columns3 > div > div:last-child {
+  flex: 0 0 320px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5em;
+  margin: 0;
+}
+
+@media (width <= 899px) {
+  .columns.columns3 > div > div:last-child {
+    width: 100%;
+    flex: 1 1 100%;
+    gap: 1em;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+}
+
+.columns.columns3 > div > div:last-child p {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+  align-items: center;
+}
+
+@media (width <= 899px) {
+  .columns.columns3 > div > div:last-child p {
+    align-items: stretch;
+    gap: 1em;
+  }
+}
+
+.columns.columns3 > div > div:last-child a {
+  display: block;
+  width: 260px;
+  min-width: 120px;
+  padding: 0.7em 0;
+  border: 1px solid #000;
+  border-radius: 100px;
+  background: #fff;
+  color: #000;
+  font-family: var(--body-font-family);
+  font-size: 1.08rem;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  margin: 0;
+}
+
+@media (width <= 899px) {
+  .columns.columns3 > div > div:last-child a {
+    width: 100%;
+    min-width: 100px;
+    font-size: 0.95rem;
+  }
+}
+
+/* First button: yellow bottom border accent */
+.columns.columns3 > div > div:last-child a:first-child {
+  border-bottom: 2px solid #f7ef99;
+  border-top: 1px solid #000;
 }
