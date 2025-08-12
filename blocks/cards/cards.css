@@ -6,11 +6,11 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 24px;
-  grid-template-rows: repeat(2, auto);
-  gap: 32px 48px;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px 32px;
   background: #fff;
   width: 100%;
-  align-items: start;
+  align-items: stretch;
 }
 
 .cards > ul > li {
@@ -18,11 +18,12 @@
   background-color: var(--background-color);
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: stretch;
   min-width: 0;
   margin: 0;
   padding: 0;
   background: none;
+  height: 100%;
 }
 
 .cards .cards-card-body {
@@ -256,4 +257,103 @@
   font-weight: 400;
   word-break: break-word;
   hyphens: auto;
+}
+
+@media (width <= 1000px) {
+  .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (width <= 600px) {
+  .cards > ul {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 12px 0;
+  }
+}
+
+/* Ensure flex row for icon + text and vertical centering */
+
+.cards > ul > li .cards-card-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  font-family: var(--body-font-family);
+  font-size: 13px;
+  line-height: 1.4;
+  color: #222;
+  font-weight: 400;
+
+  /* Vertically center text+icon block within grid cell */
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.cards > ul > li .cards-card-body p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #222;
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  word-break: break-word;
+  hyphens: auto;
+
+  /* Help center multi-line text visually with icon */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cards > ul > li .cards-card-body::before {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  margin-right: 8px;
+  margin-top: 2px; /* nudge icon down for better centering with multi-line text */
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position: center;
+}
+
+/* Example icons — use your SVGs as before */
+.cards > ul > li:nth-child(1) .cards-card-body::before {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%23222" stroke-width="2" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2 2"/></svg>');
+}
+
+.cards > ul > li:nth-child(2) .cards-card-body::before {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%23222" stroke-width="2" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="7" width="16" height="10" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>');
+}
+
+.cards > ul > li:nth-child(3) .cards-card-body::before {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%23222" stroke-width="2" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>');
+}
+
+.cards > ul > li:nth-child(4) .cards-card-body::before {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%23222" stroke-width="2" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>');
+}
+
+.cards > ul > li:nth-child(5) .cards-card-body::before {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%23222" stroke-width="2" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M3 17a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4V7a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v10z"/><path d="M8 11h5"/></svg>');
+}
+
+.cards > ul > li:nth-child(6) .cards-card-body::before {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%23222" stroke-width="2" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8v8H8z"/></svg>');
+}
+
+.cards > ul > li:nth-child(7) .cards-card-body::before {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%23222" stroke-width="2" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>');
+}
+
+.cards > ul > li:nth-child(8) .cards-card-body::before {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%23222" stroke-width="2" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 7V5a5 5 0 0 1 10 0v2"/></svg>');
 }
