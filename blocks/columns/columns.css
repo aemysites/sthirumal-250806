@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .columns > div {
   display: flex;
   flex-direction: column;
@@ -33,51 +34,14 @@
 }
 
 
-.columns.columns29 > div {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  align-items: stretch;
-  width: 100%;
-  height: 100%;
-}
-
-.columns.columns29 .columns-img-col {
-  flex: 1 1 0%;
-  display: flex;
-  align-items: stretch;
-}
-
-.columns.columns29 .columns-img-col picture {
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
-
-.columns.columns29 .columns-img-col img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 20px;
-  display: block;
-}
-
-@media (width <= 900px) {
-  .columns.columns29 > div {
-    flex-direction: column;
-    gap: 16px;
-  }
-}
-
-
 .columns.columns3 {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   padding-top: 1vw;
-  padding-bottom: 1.2vw; /* increased for better bottom spacing */
-  column-gap: 1vw;       /* reduced to tighten columns */
+  padding-bottom: 1.2vw;
+  column-gap: 1vw;
 }
 
 @media (width <= 899px) {
@@ -89,7 +53,6 @@
   }
 }
 
-/* Arrange the two child sections side by side, top-aligned */
 .columns.columns3 > div {
   display: flex;
   flex-direction: row;
@@ -106,7 +69,6 @@
   }
 }
 
-/* Left section: headline & paragraph */
 .columns.columns3 > div > div:first-child {
   flex: 1 1 0;
   min-width: 260px;
@@ -129,18 +91,16 @@
   margin-top: 0;
 }
 
-/* More space between headline and paragraph for visual rhythm */
 .columns.columns3 > div > div:first-child p {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-s);
   color: #505050;
-  margin-top: 1.2em;   /* increased for better paragraph/headline spacing */
+  margin-top: 1.2em;
   margin-bottom: 0;
   line-height: 1.45;
   max-width: 480px;
 }
 
-/* Right section: stacked pill buttons, slightly lower than headline top */
 .columns.columns3 > div > div:last-child {
   flex: 0 0 200px;
   display: flex;
@@ -148,7 +108,7 @@
   align-items: center;
   justify-content: flex-start;
   gap: 1.15em;
-  margin-top: 1.45em;   /* further lowered for better vertical alignment */
+  margin-top: 1.45em;
   align-self: flex-start;
 }
 
@@ -162,7 +122,6 @@
   }
 }
 
-/* The p in the right section: stack links vertically */
 .columns.columns3 > div > div:last-child p {
   margin: 0;
   display: flex;
@@ -178,7 +137,6 @@
   }
 }
 
-/* Style the links as pill buttons */
 .columns.columns3 > div > div:last-child a {
   display: block;
   width: 180px;
@@ -216,9 +174,58 @@
   }
 }
 
-/* Remove extra default spacing for tighter alignment */
 .columns.columns3 > div > div:last-child p,
 .columns.columns3 > div > div:last-child {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+
+.columns.columns29 > div {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: stretch;
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.columns.columns29 .columns-img-col {
+  flex: 1 1 0;
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 5 / 4; /* Slightly taller than square for a more natural block shape */
+}
+
+.columns.columns29 .columns-img-col picture,
+.columns.columns29 .columns-img-col img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.columns.columns29 .columns-img-col img {
+  object-fit: cover;
+  border-radius: 24px;
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive: stack images vertically on small screens and use a wider aspect ratio */
+@media (width <= 700px) {
+  .columns.columns29 > div {
+    flex-direction: column;
+    gap: 24px;
+    height: auto;
+    min-height: 0;
+  }
+
+  .columns.columns29 .columns-img-col {
+    aspect-ratio: 4 / 3;
+  }
 }
