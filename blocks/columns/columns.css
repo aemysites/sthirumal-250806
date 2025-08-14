@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .columns > div {
   display: flex;
   flex-direction: column;
@@ -83,7 +84,6 @@
 
 
 .columns.columns3 {
-  /* The block fills available space for vertical centering */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -99,15 +99,12 @@
 }
 
 .columns.columns3 > div {
-  /* Side-by-side layout for headline+description (left) and buttons (right) */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 6vw;
   width: 100%;
-
-  /* Remove padding here, apply it to parent for consistency */
 }
 
 @media (width <= 899px) {
@@ -211,8 +208,177 @@
   }
 }
 
-/* First button: yellow bottom border accent */
 .columns.columns3 > div > div:last-child a:first-child {
   border-bottom: 2px solid #f7ef99;
   border-top: 1px solid #000;
+}
+
+
+.columns.columns9 {
+  background: #000;
+  border-bottom: 1px solid #fff;
+  padding: 40px 0 32px;
+  color: #fff;
+  font-family: Inter, Arial, sans-serif;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Flex row for columns (outer row) */
+.columns.columns9 > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive: stack columns on small screens */
+@media (width <= 900px) {
+  .columns.columns9 > div {
+    flex-direction: column;
+    gap: 40px;
+    max-width: 100%;
+    padding: 0 16px;
+  }
+}
+
+/* First column: stack vertically, align left/top */
+.columns.columns9 > div > div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 180px;
+  gap: 0;
+  box-sizing: border-box;
+}
+
+/* Remove default margin from first column elements to ensure top alignment */
+.columns.columns9 > div > div:first-child p,
+.columns.columns9 > div > div:first-child .button,
+.columns.columns9 > div > div:first-child .button-container {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+/* Logo image: always visible, top-aligned (if present in HTML) */
+.columns.columns9 > div > div:first-child picture img {
+  width: 33px;
+  height: 33px;
+  margin-bottom: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Title: plain white text, match link size */
+.columns.columns9 > div > div:first-child .button {
+  background: none;
+  color: #fff;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-family: inherit;
+  letter-spacing: 0.03em;
+  font-weight: 500;
+  border-radius: 0;
+  line-height: 1.4;
+  cursor: default;
+  pointer-events: none;
+  max-width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+/* Social icons: horizontal row, icons only, white (if present in HTML) */
+.columns.columns9 > div > div:first-child ul {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+}
+
+.columns.columns9 > div > div:first-child ul li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Show only icons (pictures), hide link text labels (if present in HTML) */
+.columns.columns9 > div > div:first-child ul li a:not(:has(picture)) {
+  display: none;
+}
+
+/* Social icons: white, uniform size (if present in HTML) */
+.columns.columns9 > div > div:first-child ul li picture img {
+  width: 20px;
+  height: 20px;
+  display: block;
+  filter: brightness(0) invert(1);
+  background: none;
+  margin: 0;
+}
+
+/* Remove bullets and fix spacing for all lists */
+.columns.columns9 ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.columns.columns9 ul li {
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.columns.columns9 ul li:last-child {
+  margin-bottom: 0;
+}
+
+/* 2nd-4th columns: section headings and links */
+.columns.columns9 > div > div:not(:first-child) h2 {
+  color: #737373;
+  font-size: 12px;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 18px;
+  padding: 0;
+  border: none;
+}
+
+/* Navigation links in 2nd-4th columns */
+.columns.columns9 > div > div:not(:first-child) ul li a {
+  color: #fff;
+  font-size: 15px;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 400;
+  text-decoration: none;
+  transition: color 0.2s;
+  line-height: 1.7;
+}
+
+.columns.columns9 > div > div:not(:first-child) ul li a:hover,
+.columns.columns9 > div > div:not(:first-child) ul li a:focus {
+  color: #b3b3b3;
+}
+
+/* Ensure content starts at the top for all columns */
+.columns.columns9 > div > div {
+  align-self: flex-start;
+  box-sizing: border-box;
+}
+
+.columns.columns9,
+.columns.columns9 * {
+  box-sizing: border-box;
 }
