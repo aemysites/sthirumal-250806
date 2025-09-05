@@ -1,72 +1,70 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper to extract the first <img> from a card
-  function getCardImage(card) {
-    const img = card.querySelector('picture img');
-    return img;
+  // Helper to extract all card elements
+  function getCards(root) {
+    // Defensive: find all .lp__card within the block
+    return Array.from(root.querySelectorAll('.lp__card'));
   }
 
-  // Helper to extract the text content (title, description, CTA) from a card
-  function getCardTextContent(card) {
-    const contentDiv = card.querySelector('.lp__card_content');
-    if (!contentDiv) return '';
-    // We'll collect: title (as heading), description (as paragraph), CTA (as link)
-    const fragments = [];
+  // Helper to extract image from card
+  function getCardImage(card) {
+    // Find the picture element inside the card
+    const imgWrapper = card.querySelector('.lp__card_img');
+    if (imgWrapper) {
+      // Prefer the <img> inside <picture>
+      const img = imgWrapper.querySelector('img');
+      if (img) return img;
+      // Fallback: use picture itself
+      const picture = imgWrapper.querySelector('picture');
+      if (picture) return picture;
+    }
+    return null;
+  }
+
+  // Helper to extract text content from card
+  function getCardText(card) {
+    const content = card.querySelector('.lp__card_content');
+    if (!content) return document.createElement('div');
+    // Compose: title, description, and CTA link
+    const frag = document.createElement('div');
     // Title
-    const title = contentDiv.querySelector('.lp__card_title');
+    const title = content.querySelector('.lp__card_title');
     if (title) {
-      // Use the heading element (h3) directly, but strip nested <a> if present
-      const heading = document.createElement('h3');
-      const a = title.querySelector('a');
-      heading.textContent = a ? a.textContent.trim() : title.textContent.trim();
-      fragments.push(heading);
+      // Use heading or link as-is
+      frag.appendChild(title);
     }
     // Description
-    const desc = contentDiv.querySelector('.lp__card_description');
+    const desc = content.querySelector('.lp__card_description');
     if (desc) {
-      // Use the <p> directly if present
-      const p = desc.querySelector('p');
-      if (p) fragments.push(p);
-      else fragments.push(desc);
+      frag.appendChild(desc);
     }
-    // CTA: Use the first <a> in the heading, if present
-    if (title) {
-      const a = title.querySelector('a');
-      if (a && a.href) {
-        // Only add CTA if not already present as heading
-        const cta = document.createElement('a');
-        cta.href = a.href;
-        cta.textContent = a.textContent.trim();
-        fragments.push(cta);
+    // CTA: use the overlay link if present and not redundant
+    const overlayLink = card.querySelector('.lp__overlay-link');
+    if (overlayLink) {
+      // Only add if not already present in title
+      const titleLink = title ? title.querySelector('a') : null;
+      if (!titleLink || (titleLink.href !== overlayLink.href)) {
+        frag.appendChild(overlayLink);
       }
     }
-    return fragments;
+    return frag;
   }
 
+  // Compose table rows
+  const headerRow = ['Cards (cards13)'];
+  const rows = [headerRow];
+
   // Find all cards in the block
-  // Defensive: cards are .lp__card inside .lp__primary_card
-  const cards = Array.from(element.querySelectorAll('.lp__primary_card .lp__card'));
-
-  // Build the table rows
-  const rows = [];
-  // Header row as per spec
-  rows.push(['Cards (cards13)']);
-
+  const cards = getCards(element);
   cards.forEach((card) => {
-    // Image cell
-    const img = getCardImage(card);
-    // Defensive: if no image, skip this card
-    if (!img) return;
-    // Text content cell
-    const textContent = getCardTextContent(card);
-    rows.push([
-      img,
-      Array.isArray(textContent) ? textContent : [textContent],
-    ]);
+    const imgEl = getCardImage(card);
+    const textEl = getCardText(card);
+    rows.push([imgEl, textEl]);
   });
 
   // Create the block table
   const block = WebImporter.DOMUtils.createTable(rows, document);
-  // Replace the original element
+
+  // Replace original element
   element.replaceWith(block);
 }

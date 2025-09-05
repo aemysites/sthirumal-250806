@@ -4,25 +4,26 @@ export default function parse(element, { document }) {
   const headerRow = ['Cards (cards21)'];
   const rows = [headerRow];
 
-  // Get all immediate card children
+  // Get all card elements (direct children)
   const cards = element.querySelectorAll(':scope > .lp-sticky-card');
 
   cards.forEach((card) => {
-    // Defensive: find image container
+    // Defensive: Find image container
     const imgContainer = card.querySelector('.lp-sticky-card-img');
-    let imgEl = null;
+    let imageEl = null;
     if (imgContainer) {
-      // Use the <picture> element directly for responsive images
+      // Use the <picture> element directly for robustness
       const picture = imgContainer.querySelector('picture');
       if (picture) {
-        imgEl = picture;
+        imageEl = picture;
       } else {
-        // Fallback: use the first <img> inside
-        imgEl = imgContainer.querySelector('img');
+        // fallback: use the img if picture is missing
+        const img = imgContainer.querySelector('img');
+        if (img) imageEl = img;
       }
     }
 
-    // Defensive: find content container
+    // Defensive: Find content container
     const contentContainer = card.querySelector('.lp-sticky-card-content');
     let textContent = [];
     if (contentContainer) {
@@ -34,14 +35,14 @@ export default function parse(element, { document }) {
       if (desc) textContent.push(desc);
     }
 
-    // Add row: [image, text content]
+    // Compose row: [image, text content]
     rows.push([
-      imgEl,
+      imageEl,
       textContent
     ]);
   });
 
-  // Create the block table
+  // Create block table
   const block = WebImporter.DOMUtils.createTable(rows, document);
   // Replace original element
   element.replaceWith(block);

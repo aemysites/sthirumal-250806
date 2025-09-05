@@ -1,53 +1,68 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper to find all card root elements
-  function getCardElements(root) {
-    // Find all .lp__card under the element
-    return Array.from(root.querySelectorAll('.lp__card'));
-  }
-
-  // Helper to extract image (picture or img) from card
+  // Helper to extract the image (picture or img) from a card
   function extractImage(card) {
-    // Prefer the <picture> element if present
-    const pic = card.querySelector('.lp__card_img picture');
-    if (pic) return pic;
-    // Fallback to img
-    const img = card.querySelector('.lp__card_img img');
+    const imgContainer = card.querySelector('.lp__card_img');
+    if (!imgContainer) return '';
+    // Prefer <picture>, fallback to <img>
+    const picture = imgContainer.querySelector('picture');
+    if (picture) return picture;
+    const img = imgContainer.querySelector('img');
     if (img) return img;
-    return null;
+    return '';
   }
 
-  // Helper to extract text content (title, description, CTA) from card
+  // Helper to extract the text content (title, description, cta) from a card
   function extractTextContent(card) {
     const contentDiv = card.querySelector('.lp__card_content');
-    if (!contentDiv) return document.createElement('div');
-    // Clone the contentDiv to avoid moving it out of the DOM
-    const contentClone = contentDiv.cloneNode(true);
-    // Remove id attributes (if any)
-    contentClone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
-    return contentClone;
+    if (!contentDiv) return '';
+    const frag = document.createDocumentFragment();
+    // Title
+    const title = contentDiv.querySelector('.lp__card_title');
+    if (title) {
+      // Use the heading tag (h3) and its children (including link)
+      frag.appendChild(title.cloneNode(true));
+    }
+    // Description
+    const desc = contentDiv.querySelector('.lp__card_description');
+    if (desc) {
+      frag.appendChild(desc.cloneNode(true));
+    }
+    // CTA: overlay link (if present and not duplicate)
+    const overlayLink = card.querySelector('.lp__overlay-link');
+    if (overlayLink) {
+      // Only add if not a duplicate of the title link
+      let titleLink = title && title.querySelector('a');
+      if (!titleLink || overlayLink.href !== titleLink.href) {
+        // Place CTA on its own line
+        const p = document.createElement('p');
+        p.appendChild(overlayLink.cloneNode(true));
+        frag.appendChild(p);
+      }
+    }
+    return frag.childNodes.length ? frag : '';
   }
 
-  // Compose the table rows
-  const headerRow = ['Cards (cards14)'];
-  const rows = [headerRow];
+  // Find all cards in the block
+  // Cards are .lp__card inside .lp__primary_card
+  const cards = Array.from(element.querySelectorAll('.lp__primary_card .lp__card'));
 
-  // Find all cards
-  const cards = getCardElements(element);
+  // Build table rows
+  const rows = [];
+  // Header row (block name as required)
+  rows.push(['Cards (cards14)']);
 
-  cards.forEach(card => {
-    // Image cell
-    const imageEl = extractImage(card);
-    // Text cell
-    const textEl = extractTextContent(card);
+  // Card rows
+  cards.forEach((card) => {
+    const img = extractImage(card);
+    const textContent = extractTextContent(card);
     rows.push([
-      imageEl,
-      textEl
+      img || '',
+      textContent || '',
     ]);
   });
 
-  // Create the table block
-  const block = WebImporter.DOMUtils.createTable(rows, document);
-  // Replace the original element
-  element.replaceWith(block);
+  // Create table and replace element
+  const table = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(table);
 }

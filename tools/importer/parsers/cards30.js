@@ -1,41 +1,50 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper to extract card info from each .col-lg-4
+  // Helper to extract card content from a .col-... element
   function extractCard(col) {
-    // Find the image
+    // Get the image (mandatory)
     const img = col.querySelector('img');
 
-    // Find the title (inside .lp__listnav_icon_cta_title > span:first-child)
-    let titleSpan = col.querySelector('.lp__listnav_icon_cta_title span');
-    let titleText = titleSpan ? titleSpan.textContent.trim() : '';
-    let titleEl;
-    if (titleText) {
-      titleEl = document.createElement('strong');
-      titleEl.textContent = titleText;
+    // Get the title (mandatory, inside .lp__listnav_icon_cta_title > span:first-child)
+    let title = '';
+    const titleWrap = col.querySelector('.lp__listnav_icon_cta_title');
+    if (titleWrap) {
+      const spans = titleWrap.querySelectorAll('span');
+      if (spans.length > 0) {
+        title = spans[0].textContent.trim();
+      }
     }
+    // Create a heading element for the title
+    const heading = document.createElement('strong');
+    heading.textContent = title;
 
-    // Find the description (inside .lp__listnav_icon_cta_bottom > p)
-    let descP = col.querySelector('.lp__listnav_icon_cta_bottom p');
+    // Get the description (inside .lp__listnav_icon_cta_bottom > p)
+    let desc = '';
+    const descP = col.querySelector('.lp__listnav_icon_cta_bottom p');
+    if (descP) {
+      desc = descP.textContent.trim();
+    }
+    // Create a paragraph for the description
+    const descElem = document.createElement('p');
+    descElem.textContent = desc;
 
-    // Compose the text cell
-    const textCell = [];
-    if (titleEl) textCell.push(titleEl);
-    if (descP) textCell.push(descP);
-
-    return [img, textCell];
+    // Return [image, [title, description]]
+    return [img, [heading, descElem]];
   }
 
-  // Get all card columns
-  const cardCols = element.querySelectorAll(':scope .row > .col-lg-4');
+  // Find all card columns (direct children of .row)
+  const row = element.querySelector('.row');
+  if (!row) return;
+  const cols = Array.from(row.children).filter((col) => col.className && col.className.match(/col-/));
 
-  // Build table rows
+  // Build the table rows
   const headerRow = ['Cards (cards30)'];
-  const rows = Array.from(cardCols).map(extractCard);
-  const cells = [headerRow, ...rows];
+  const rows = cols.map(extractCard);
 
-  // Create table block
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-
-  // Replace original element
-  element.replaceWith(block);
+  // Create the table and replace the element
+  const table = WebImporter.DOMUtils.createTable([
+    headerRow,
+    ...rows
+  ], document);
+  element.replaceWith(table);
 }

@@ -1,71 +1,79 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Table header
-  const headerRow = ['Cards (cards37)'];
-  const rows = [headerRow];
+  // Defensive: Find the card list container
+  const listNav = element.querySelector('.lp__list_navcomponents');
+  if (!listNav) return;
 
-  // Find all card list items
-  const cardEls = element.querySelectorAll('.lp__list_navigation_section');
+  // Get all card elements
+  const cardEls = Array.from(listNav.querySelectorAll('li.lp__list_navigation_section'));
+  const rows = [];
+  // Header row
+  rows.push(['Cards (cards37)']);
 
-  cardEls.forEach((cardEl) => {
-    // Image cell: find the <img> inside the .lp__lg_horizontal_img
-    const imgContainer = cardEl.querySelector('.lp__lg_horizontal_img');
-    let imgEl = null;
-    if (imgContainer) {
-      imgEl = imgContainer.querySelector('img');
+  cardEls.forEach(cardEl => {
+    // Image cell: find the <img> inside <picture>
+    let imgEl = cardEl.querySelector('.lp__lg_horizontal_img img');
+    // Defensive: fallback if not found
+    if (!imgEl) {
+      const pic = cardEl.querySelector('.lp__lg_horizontal_img picture');
+      imgEl = pic ? pic.querySelector('img') : null;
     }
 
-    // Text cell: build a fragment with title, hammer, blurb, and CTA
-    const contentContainer = cardEl.querySelector('.lp__list_navigation_content');
-    const frag = document.createElement('div');
-    if (contentContainer) {
+    // Text cell: build content
+    const contentDiv = cardEl.querySelector('.lp__list_navigation_content');
+    const textCell = document.createElement('div');
+    if (contentDiv) {
       // Title (as heading)
-      const titleDiv = contentContainer.querySelector('.lp__list_navigation_title');
+      const titleDiv = contentDiv.querySelector('.lp__list_navigation_title');
       if (titleDiv) {
-        // Use <strong> for heading style
-        const titleLink = titleDiv.querySelector('a');
-        if (titleLink) {
-          const strong = document.createElement('strong');
-          strong.appendChild(titleLink);
-          frag.appendChild(strong);
+        // Use <a> as heading if present
+        const link = titleDiv.querySelector('a');
+        if (link) {
+          const heading = document.createElement('strong');
+          heading.appendChild(link.cloneNode(true));
+          textCell.appendChild(heading);
+        } else {
+          // fallback: just text
+          const heading = document.createElement('strong');
+          heading.textContent = titleDiv.textContent.trim();
+          textCell.appendChild(heading);
         }
       }
-      // Hammer (subtitle)
-      const hammerDiv = contentContainer.querySelector('.lp__hammer');
+      // Subtitle/hammer
+      const hammerDiv = contentDiv.querySelector('.lp__hammer');
       if (hammerDiv) {
-        const hammer = document.createElement('div');
-        hammer.innerHTML = hammerDiv.innerHTML;
-        hammer.style.fontSize = 'smaller';
-        hammer.style.fontWeight = 'bold';
-        frag.appendChild(hammer);
+        const subtitle = document.createElement('div');
+        subtitle.style.fontSize = 'smaller';
+        subtitle.style.fontWeight = 'bold';
+        subtitle.textContent = hammerDiv.textContent.trim();
+        textCell.appendChild(subtitle);
       }
-      // Blurb (description)
-      const blurbDiv = contentContainer.querySelector('.lp__blurb_text');
+      // Description
+      const blurbDiv = contentDiv.querySelector('.lp__blurb_text');
       if (blurbDiv) {
         // Use the <p> directly
-        const p = blurbDiv.querySelector('p');
-        if (p) frag.appendChild(p);
+        const para = blurbDiv.querySelector('p');
+        if (para) textCell.appendChild(para);
       }
-    }
-    // CTA: use the .lp__overlay-link (hidden link) if present and not already used
-    const overlayLink = cardEl.querySelector('.lp__overlay-link');
-    if (overlayLink) {
-      // Only add if not already present in title
-      const titleLink = contentContainer && contentContainer.querySelector('.lp__list_navigation_title a');
-      if (!titleLink || (titleLink && titleLink.getAttribute('href') !== overlayLink.getAttribute('href'))) {
+      // CTA: Use the overlay link if present and not redundant
+      const overlayLink = cardEl.querySelector('a.lp__overlay-link');
+      // Only add CTA if it's not the same as the heading link
+      if (overlayLink && (!titleDiv || !titleDiv.querySelector('a') || overlayLink.href !== titleDiv.querySelector('a').href)) {
         const cta = document.createElement('div');
-        const link = document.createElement('a');
-        link.href = overlayLink.getAttribute('href');
-        link.textContent = overlayLink.textContent;
-        cta.appendChild(link);
-        frag.appendChild(cta);
+        const ctaLink = overlayLink.cloneNode(true);
+        cta.appendChild(ctaLink);
+        textCell.appendChild(cta);
       }
     }
-    // Add row: [image, text fragment]
-    rows.push([imgEl, frag]);
+
+    // Add row: [image, text]
+    rows.push([
+      imgEl ? imgEl : '',
+      textCell
+    ]);
   });
 
-  // Create and replace
-  const table = WebImporter.DOMUtils.createTable(rows, document);
-  element.replaceWith(table);
+  // Create table block
+  const block = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(block);
 }

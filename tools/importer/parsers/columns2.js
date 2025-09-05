@@ -1,26 +1,25 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Defensive: ensure element exists
-  if (!element) return;
+  // Defensive: ensure element is a container with columns
+  if (!element || !element.classList.contains('ft-main')) return;
 
-  // Get all immediate children with class 'ft-main-item' (each is a column)
-  const columns = Array.from(element.querySelectorAll(':scope > .ft-main-item'));
-
-  // Defensive: if no columns found, do nothing
-  if (!columns.length) return;
-
-  // Table header row as specified
+  // Header row for the block
   const headerRow = ['Columns (columns2)'];
 
-  // Second row: each column cell contains the entire ft-main-item div
-  const contentRow = columns;
+  // Get all direct column children
+  const columns = Array.from(element.querySelectorAll(':scope > .ft-main-item'));
 
-  // Compose table data
-  const tableData = [headerRow, contentRow];
+  // Defensive: skip if no columns found
+  if (!columns.length) return;
 
-  // Create the block table
-  const block = WebImporter.DOMUtils.createTable(tableData, document);
+  // Second row: each cell is a column's content
+  // For resilience, include the whole column block (not just the ul)
+  const contentRow = columns.map(col => col);
 
-  // Replace the original element with the new block table
-  element.replaceWith(block);
+  // Build the table
+  const cells = [headerRow, contentRow];
+  const table = WebImporter.DOMUtils.createTable(cells, document);
+
+  // Replace the original element
+  element.replaceWith(table);
 }

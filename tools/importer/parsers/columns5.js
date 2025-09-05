@@ -1,36 +1,36 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Defensive: find the main content and image columns
-  // The structure is: .eventdetail-section > .eventdetail__content and .eventdetail__image
-  const section = element.querySelector('.eventdetail-section');
-  if (!section) return;
+  // Find the section wrapper
+  const section = element.querySelector('.eventdetail-section') || element;
 
-  // Get the two main columns
-  const columns = [];
+  // Get the two columns: content and image
+  let contentCol = null;
+  let imageCol = null;
+  const children = Array.from(section.children);
+  children.forEach((child) => {
+    if (child.classList.contains('eventdetail__content')) {
+      contentCol = child;
+    } else if (child.classList.contains('eventdetail__image')) {
+      imageCol = child;
+    }
+  });
 
-  // First column: content (title + description)
-  const contentCol = section.querySelector('.eventdetail__content');
-  if (contentCol) {
-    columns.push(contentCol);
-  } else {
-    columns.push('');
+  // Fallback: if not found, try to get the first two divs
+  if (!contentCol || !imageCol) {
+    contentCol = contentCol || children[0];
+    imageCol = imageCol || children[1];
   }
 
-  // Second column: image (picture inside a link)
-  const imageCol = section.querySelector('.eventdetail__image');
-  if (imageCol) {
-    columns.push(imageCol);
-  } else {
-    columns.push('');
-  }
-
-  // Header row as required
+  // Build the table rows
   const headerRow = ['Columns (columns5)'];
-  const tableRows = [headerRow, columns];
+  const contentRow = [contentCol, imageCol];
 
   // Create the block table
-  const block = WebImporter.DOMUtils.createTable(tableRows, document);
+  const table = WebImporter.DOMUtils.createTable([
+    headerRow,
+    contentRow,
+  ], document);
 
-  // Replace the original element with the new block
-  element.replaceWith(block);
+  // Replace the original element with the new table
+  element.replaceWith(table);
 }

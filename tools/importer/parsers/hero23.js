@@ -1,50 +1,36 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Defensive: Only proceed if element exists
-  if (!element) return;
-
-  // Header row for the block table
+  // Table structure: 1 column, 3 rows
+  // Row 1: block name (must match exactly)
   const headerRow = ['Hero (hero23)'];
 
-  // --- Row 2: Background Image (optional) ---
-  // Try to extract any background image from the color-wrapper div
-  let bgCell = '';
+  // Row 2: background image or decorative background
+  // For this HTML, use the color-wrapper div as the background visual
   const colorWrapper = element.querySelector('.color-wrapper');
-  if (colorWrapper) {
-    // If there is a background image style, extract it
-    const bgImage = colorWrapper.style.backgroundImage;
-    if (bgImage && bgImage !== 'none') {
-      // Extract the URL from backgroundImage style
-      const urlMatch = bgImage.match(/url\(["']?(.*?)["']?\)/);
-      if (urlMatch && urlMatch[1]) {
-        const img = document.createElement('img');
-        img.src = urlMatch[1];
-        bgCell = img;
-      }
-    } else {
-      // If no image, include the color-wrapper div itself for visual reference
-      bgCell = colorWrapper.cloneNode(true);
+  const backgroundRow = [colorWrapper ? colorWrapper : ''];
+
+  // Row 3: content (title, subheading, CTA) - none present in this HTML, so omit the row if empty
+  // Check if there is any content outside color-wrapper
+  let content = '';
+  element.childNodes.forEach((node) => {
+    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
+      content += node.textContent.trim() + ' ';
     }
-  }
-
-  // --- Row 3: Headline, Subheading, CTA (all optional) ---
-  // There is no headline, subheading, or CTA in this HTML block.
-  // But to meet requirements, include any text content from the color-wrapper or its children
-  let contentCell = '';
-  if (colorWrapper) {
-    // Collect all text nodes inside colorWrapper
-    const textContent = colorWrapper.textContent.trim();
-    if (textContent) {
-      contentCell = textContent;
+    if (
+      node.nodeType === Node.ELEMENT_NODE &&
+      node !== colorWrapper &&
+      !node.classList.contains('color-wrapper')
+    ) {
+      content += node.textContent.trim() + ' ';
     }
-  }
+  });
+  content = content.trim();
+  const contentRow = [content];
 
-  // Compose the table rows
-  const cells = [headerRow, [bgCell], [contentCell]];
+  // Always include 3 rows as required by the block spec
+  const cells = [headerRow, backgroundRow, contentRow];
+  const table = WebImporter.DOMUtils.createTable(cells, document);
 
-  // Create the block table
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-
-  // Replace the original element with the new block table
-  element.replaceWith(block);
+  // Replace the original element with the new table
+  element.replaceWith(table);
 }

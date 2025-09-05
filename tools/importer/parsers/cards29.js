@@ -1,77 +1,68 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Defensive: Find the card list container
-  const listNav = element.querySelector('.lp__list_navcomponents');
-  if (!listNav) return;
+  // Helper to extract the image from a card
+  function getCardImage(card) {
+    // Find the first <img> inside the card
+    const img = card.querySelector('img');
+    return img || '';
+  }
 
-  // Get all card items
-  const cardItems = Array.from(listNav.querySelectorAll('li.lp__list_navigation_section'));
-  if (!cardItems.length) return;
+  // Helper to extract the text content from a card
+  function getCardText(card) {
+    const content = card.querySelector('.lp__list_navigation_content');
+    if (!content) return '';
+    const parts = [];
 
-  // Header row
-  const headerRow = ['Cards (cards29)'];
-  const rows = [headerRow];
-
-  cardItems.forEach((card) => {
-    // Image cell: find <picture> or <img>
-    let imageCell = null;
-    const imgWrap = card.querySelector('.lp__lg_horizontal_img');
-    if (imgWrap) {
-      const picture = imgWrap.querySelector('picture');
-      if (picture) {
-        imageCell = picture;
-      } else {
-        const img = imgWrap.querySelector('img');
-        if (img) imageCell = img;
+    // Title (as heading, strong)
+    const titleDiv = content.querySelector('.lp__list_navigation_title');
+    if (titleDiv) {
+      const link = titleDiv.querySelector('a');
+      if (link) {
+        const strong = document.createElement('strong');
+        strong.append(link.textContent);
+        parts.push(strong);
       }
     }
 
-    // Text cell: title, hammer, description, CTA
-    const contentWrap = card.querySelector('.lp__list_navigation_content');
-    const textCellContent = [];
-    if (contentWrap) {
-      // Title (as heading)
-      const titleDiv = contentWrap.querySelector('.lp__list_navigation_title');
-      if (titleDiv) {
-        // Use the <a> inside as heading
-        const link = titleDiv.querySelector('a');
-        if (link) {
-          const heading = document.createElement('strong');
-          heading.appendChild(link);
-          textCellContent.push(heading);
-        }
-      }
-      // Hammer (subtitle)
-      const hammerDiv = contentWrap.querySelector('.lp__hammer');
-      if (hammerDiv) {
-        // Use as a paragraph (subtitle)
-        const subtitle = document.createElement('div');
-        subtitle.innerHTML = hammerDiv.innerHTML;
-        textCellContent.push(subtitle);
-      }
-      // Description
-      const blurbDiv = contentWrap.querySelector('.lp__blurb_text');
-      if (blurbDiv) {
-        textCellContent.push(blurbDiv);
-      }
+    // Hammer (meta info)
+    const hammerDiv = content.querySelector('.lp__hammer');
+    if (hammerDiv && hammerDiv.textContent.trim()) {
+      const hammer = document.createElement('div');
+      hammer.textContent = hammerDiv.textContent.trim();
+      parts.push(hammer);
     }
-    // CTA: Use the overlay link if present and not already used
-    const overlayLink = card.querySelector('a.lp__overlay-link');
-    if (overlayLink) {
-      // Only add if not already present in title
-      if (!textCellContent.some(el => el.contains && el.contains(overlayLink))) {
-        textCellContent.push(overlayLink);
+
+    // Blurb (description)
+    const blurbDiv = content.querySelector('.lp__blurb_text');
+    if (blurbDiv) {
+      const p = blurbDiv.querySelector('p');
+      if (p && p.textContent.trim()) {
+        const para = document.createElement('p');
+        para.textContent = p.textContent.trim();
+        parts.push(para);
       }
     }
 
-    // Compose row: [image, text]
+    return parts.length ? parts : '';
+  }
+
+  // Find all cards
+  const cards = Array.from(element.querySelectorAll('.lp__list_navigation_section'));
+
+  // Build table rows
+  const rows = [];
+  rows.push(['Cards (cards29)']);
+
+  cards.forEach(card => {
+    const img = getCardImage(card);
+    const textParts = getCardText(card);
     rows.push([
-      imageCell,
-      textCellContent
+      img,
+      textParts
     ]);
   });
 
-  // Create table and replace
+  // Create the block table
   const table = WebImporter.DOMUtils.createTable(rows, document);
   element.replaceWith(table);
 }

@@ -1,69 +1,73 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the event list root
+  // Defensive: Find the event list container
   const eventList = element.querySelector('.academy_eventlist .ace-eventlist');
   if (!eventList) return;
 
+  // Header row as per block spec
+  const headerRow = ['Cards (cards36)'];
+  const rows = [headerRow];
+
   // Get all event wrappers
   const eventWrappers = eventList.querySelectorAll('.lp__meetingevent_wrapper');
-  if (!eventWrappers.length) return;
-
-  // Prepare table rows
-  const rows = [];
-  // Header row as per instructions
-  rows.push(['Cards (cards36)']);
 
   eventWrappers.forEach(wrapper => {
-    // --- First cell: Image ---
-    let imgCell = document.createElement('div');
-    const imgBlock = wrapper.querySelector('.lp__meetingevent_img');
-    if (imgBlock) {
-      const img = imgBlock.querySelector('img');
-      if (img) {
-        imgCell = img;
+    // --- Image cell ---
+    // Defensive: Find the image (picture or img)
+    let imgCell = null;
+    const imgContainer = wrapper.querySelector('.lp__meetingevent_img');
+    if (imgContainer) {
+      // Use the <picture> element if present, else fallback to <img>
+      const picture = imgContainer.querySelector('picture');
+      if (picture) {
+        imgCell = picture;
+      } else {
+        const img = imgContainer.querySelector('img');
+        if (img) imgCell = img;
       }
     }
 
-    // --- Second cell: Text content (date, title, location) ---
-    const textCellContent = [];
+    // --- Text cell ---
+    // Compose: Date, Title (as heading), Location
+    const textParts = [];
 
-    // Date block (month and date)
+    // Date block
     const dateBlock = wrapper.querySelector('.lp__event_month');
     if (dateBlock) {
-      // Clone to avoid moving the node
-      textCellContent.push(dateBlock.cloneNode(true));
+      // Clone to avoid moving from DOM
+      textParts.push(dateBlock.cloneNode(true));
     }
 
-    // Title (linked)
+    // Title (as heading)
     const details = wrapper.querySelector('.lp__meetingevent_details');
     if (details) {
-      const title = details.querySelector('.h3, h3, .lp__collapse_title, a');
-      if (title) {
-        // If the title is an <a>, use it directly, else wrap in <div>
-        if (title.tagName === 'A') {
-          textCellContent.push(title);
-        } else {
-          const div = document.createElement('div');
-          div.appendChild(title);
-          textCellContent.push(div);
+      // Defensive: Find the h3 or a
+      const titleDiv = details.querySelector('.h3');
+      if (titleDiv) {
+        // Use the anchor as heading
+        const a = titleDiv.querySelector('a');
+        if (a) {
+          // Create a heading element for semantic value
+          const heading = document.createElement('h3');
+          heading.appendChild(a.cloneNode(true));
+          textParts.push(heading);
         }
       }
-      // Description/location (the <p> tag)
-      const desc = details.querySelector('p');
-      if (desc) {
-        textCellContent.push(desc);
+      // Description/location
+      const p = details.querySelector('p');
+      if (p) {
+        textParts.push(p.cloneNode(true));
       }
     }
 
-    // Defensive: if nothing found, add empty div
-    if (textCellContent.length === 0) {
-      textCellContent.push(document.createElement('div'));
-    }
-
-    rows.push([imgCell, textCellContent]);
+    // Compose the row: [image, text]
+    rows.push([
+      imgCell,
+      textParts
+    ]);
   });
 
-  // Create the table block
+  // Create the block table
   const table = WebImporter.DOMUtils.createTable(rows, document);
   element.replaceWith(table);
 }

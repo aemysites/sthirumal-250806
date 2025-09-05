@@ -1,36 +1,30 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Defensive: find the main section (should be .eventdetail-section)
+  // Defensive: Find main content and image column
   const section = element.querySelector('.eventdetail-section');
   if (!section) return;
 
-  // Get the two main columns: content and image
-  // The content is .eventdetail__content, the image is .eventdetail__image
-  const contentCol = section.querySelector('.eventdetail__content');
-  const imageCol = section.querySelector('.eventdetail__image');
+  // Get content column
+  const content = section.querySelector('.eventdetail__content');
+  // Get image column
+  const imageWrapper = section.querySelector('.eventdetail__image');
 
-  // Defensive: if either is missing, fallback to the section's children
-  let leftCell, rightCell;
-  if (contentCol && imageCol) {
-    leftCell = contentCol;
-    rightCell = imageCol;
-  } else {
-    // fallback: try to use first two direct children
-    const children = Array.from(section.children);
-    leftCell = children[0] || document.createElement('div');
-    rightCell = children[1] || document.createElement('div');
-  }
+  // Defensive: Ensure both columns exist
+  if (!content || !imageWrapper) return;
 
   // Table header row
   const headerRow = ['Columns (columns4)'];
-  // Table content row: two columns, left is content, right is image
-  const contentRow = [leftCell, rightCell];
 
-  const table = WebImporter.DOMUtils.createTable([
-    headerRow,
-    contentRow,
-  ], document);
+  // Table second row: two columns
+  // Left column: all content (title, description, enroll button)
+  // Right column: image only (picture inside .eventdetail__image)
+  // Reference the entire content and image blocks for resilience
+  const row = [content, imageWrapper];
 
-  // Replace the original element with the new table
-  element.replaceWith(table);
+  // Build table
+  const cells = [headerRow, row];
+  const block = WebImporter.DOMUtils.createTable(cells, document);
+
+  // Replace original element with block table
+  element.replaceWith(block);
 }
