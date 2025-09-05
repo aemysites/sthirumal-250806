@@ -1,7 +1,7 @@
 {
   "templates": [
     {
-      "name": "'Service Overview'",
+      "name": "Category Overview Page",
       "cluster": 1,
       "pages": [
         {
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "name": "\"Content Hub\"",
+      "name": "'Program Overview Template'",
       "cluster": 2,
       "pages": [
         {
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "name": "\"Content Hub\"",
+      "name": "\"Content Overview Page\"",
       "cluster": 3,
       "pages": [
         {
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "name": "'Academy Overview Page'",
+      "name": "'Educational Overview Page'",
       "cluster": 4,
       "pages": [
         {
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "name": "Category Overview Page",
+      "name": "'Course Overview Page'",
       "cluster": 5,
       "pages": [
         {
@@ -371,7 +371,7 @@
       ]
     },
     {
-      "name": "'Information Page'",
+      "name": "Informational Overview Page",
       "cluster": 6,
       "pages": [
         {
@@ -385,7 +385,7 @@
       ]
     },
     {
-      "name": "Dashboard Template",
+      "name": "'Category Overview Page'",
       "cluster": 7,
       "pages": [
         {
@@ -525,7 +525,7 @@
       ]
     },
     {
-      "name": "'Category Overview'",
+      "name": "'Content Overview Page'",
       "cluster": 9,
       "pages": [
         {
@@ -695,7 +695,7 @@
       ]
     },
     {
-      "name": "\"Information Overview Page\"",
+      "name": "Informational Content Page",
       "cluster": 10,
       "pages": [
         {
@@ -713,7 +713,7 @@
       ]
     },
     {
-      "name": "'Educational Portal'",
+      "name": "'Course Overview Page'",
       "cluster": 11,
       "pages": [
         {
