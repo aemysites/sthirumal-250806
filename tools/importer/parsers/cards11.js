@@ -1,50 +1,49 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper to extract the <img> from a card
-  function getCardImage(card) {
-    const img = card.querySelector('.lp__card_img img');
-    return img;
+  // Helper to extract card info from a card wrapper
+  function extractCard(cardWrapper) {
+    // Image: find <picture> or <img> inside .lp__card_img
+    const imgContainer = cardWrapper.querySelector('.lp__card_img');
+    let imageEl = null;
+    if (imgContainer) {
+      imageEl = imgContainer.querySelector('picture') || imgContainer.querySelector('img');
+    }
+
+    // Text content: title, description, CTA
+    const contentContainer = cardWrapper.querySelector('.lp__card_content');
+    const contentParts = [];
+    if (contentContainer) {
+      // Title
+      const title = contentContainer.querySelector('.lp__card_title');
+      if (title) contentParts.push(title);
+      // Description
+      const desc = contentContainer.querySelector('.lp__card_description');
+      if (desc) contentParts.push(desc);
+      // CTA (optional)
+      const ctaList = contentContainer.querySelector('.lp__card_list');
+      if (ctaList) contentParts.push(ctaList);
+    }
+    return [imageEl, contentParts];
   }
 
-  // Helper to extract the text content (title, description, CTA) from a card
-  function getCardTextContent(card) {
-    const content = card.querySelector('.lp__card_content');
-    if (!content) return '';
-    // We'll collect: title (h3), description (div.lp__card_description), CTA (ul.lp__card_list)
-    const fragment = document.createDocumentFragment();
-    // Title
-    const title = content.querySelector('.lp__card_title');
-    if (title) fragment.appendChild(title);
-    // Description
-    const desc = content.querySelector('.lp__card_description');
-    if (desc) fragment.appendChild(desc);
-    // CTA (optional)
-    const cta = content.querySelector('.lp__card_list');
-    if (cta) fragment.appendChild(cta);
-    return fragment;
-  }
+  // Find all card wrappers in the block
+  // Defensive: find all .lp__card_wrapper inside element
+  const cardWrappers = Array.from(element.querySelectorAll('.lp__card_wrapper'));
 
-  // Find all cards in the block
-  // Defensive: find all .lp__card inside .redesign_card
-  const cards = Array.from(element.querySelectorAll('.redesign_card .lp__card'));
+  // Table header
+  const headerRow = ['Cards (cards11)'];
+  const rows = [headerRow];
 
-  // Build table rows
-  const rows = [];
-  // Header row
-  rows.push(['Cards (cards11)']);
-
-  // Card rows
-  cards.forEach((card) => {
-    const img = getCardImage(card);
-    const textContent = getCardTextContent(card);
+  // Each card: [image, text content]
+  cardWrappers.forEach((cardWrapper) => {
+    const [imageEl, contentParts] = extractCard(cardWrapper);
     rows.push([
-      img || '',
-      textContent || '',
+      imageEl,
+      contentParts
     ]);
   });
 
-  // Create the table block
+  // Create table and replace element
   const table = WebImporter.DOMUtils.createTable(rows, document);
-  // Replace the original element
   element.replaceWith(table);
 }

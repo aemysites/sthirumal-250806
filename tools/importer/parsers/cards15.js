@@ -1,42 +1,78 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper to get all card elements in the block
-  // Defensive: Only select direct children of the gridlayout > .row > .col* > ...
-  const cardRows = [];
-  const headerRow = ['Cards (cards15)'];
+  // Helper to get all card elements
+  function getCards(root) {
+    // Defensive: find all .lp__card_wrapper inside the element
+    return Array.from(root.querySelectorAll('.lp__card_wrapper'));
+  }
 
-  // Find all columns in the grid
-  const columns = element.querySelectorAll(':scope > .row > div');
-  columns.forEach((col) => {
-    // Each column may have nested wrappers, so look for .lp__card inside
-    const card = col.querySelector('.lp__card');
-    if (card) {
-      // Image: find the <img> inside .lp__card_img
-      const imgWrapper = card.querySelector('.lp__card_img');
-      let imgEl = null;
-      if (imgWrapper) {
-        imgEl = imgWrapper.querySelector('img');
-      }
-      // Text: find the .lp__card_content
-      const contentWrapper = card.querySelector('.lp__card_content');
-      let textContent = null;
-      if (contentWrapper) {
-        // We'll include the whole contentWrapper (contains h3, description, etc)
-        textContent = contentWrapper;
-      }
-      // Only add if both image and text are present
-      if (imgEl && textContent) {
-        cardRows.push([imgEl, textContent]);
+  // Helper to extract image (as <img>) from card
+  function getCardImage(card) {
+    // Find the .lp__card_img inside the card
+    const imgContainer = card.querySelector('.lp__card_img');
+    if (!imgContainer) return null;
+    // Find the <img> inside (not <picture>), reference the <img> directly
+    const img = imgContainer.querySelector('img');
+    return img || null;
+  }
+
+  // Helper to extract text content (title, description, CTA) from card
+  function getCardTextContent(card) {
+    const content = document.createElement('div');
+    // Title (h3 > a)
+    const title = card.querySelector('.lp__card_title');
+    if (title) {
+      // Use the <a> inside h3 if present
+      const a = title.querySelector('a');
+      if (a) {
+        // Clone the <a> so we can safely append
+        const h = document.createElement('strong');
+        h.appendChild(a.cloneNode(true));
+        content.appendChild(h);
+        content.appendChild(document.createElement('br'));
+      } else {
+        // fallback: just append the h3
+        content.appendChild(title.cloneNode(true));
       }
     }
+    // Description
+    const desc = card.querySelector('.lp__card_description');
+    if (desc) {
+      // Append all paragraphs inside description
+      Array.from(desc.children).forEach((child) => {
+        content.appendChild(child.cloneNode(true));
+      });
+    }
+    // CTA: look for .lp__overlay-link (but only if it's not the same as the title link)
+    const cta = card.parentElement.querySelector('.lp__overlay-link');
+    if (cta) {
+      // Only add if href is not already used in title
+      const titleLink = title && title.querySelector('a');
+      if (!titleLink || titleLink.href !== cta.href) {
+        const ctaLink = cta.cloneNode(true);
+        content.appendChild(ctaLink);
+      }
+    }
+    return content;
+  }
+
+  // Compose the table rows
+  const headerRow = ['Cards (cards15)'];
+  const rows = [headerRow];
+
+  // Find all cards in the block
+  const cards = getCards(element);
+  cards.forEach((card) => {
+    const img = getCardImage(card);
+    const textContent = getCardTextContent(card);
+    rows.push([
+      img ? img : '',
+      textContent
+    ]);
   });
 
-  // Only build the table if we have at least one card
-  if (cardRows.length > 0) {
-    const table = WebImporter.DOMUtils.createTable([
-      headerRow,
-      ...cardRows
-    ], document);
-    element.replaceWith(table);
-  }
+  // Create the table block
+  const table = WebImporter.DOMUtils.createTable(rows, document);
+  // Replace the original element
+  element.replaceWith(table);
 }

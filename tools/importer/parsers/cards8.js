@@ -2,55 +2,53 @@
 export default function parse(element, { document }) {
   // Helper to get all immediate card columns
   const cardColumns = Array.from(element.querySelectorAll(':scope > .row > .colsplit'));
-  const rows = [];
 
+  const rows = [];
   // Always start with the block header
-  const headerRow = ['Cards (cards8)'];
-  rows.push(headerRow);
+  rows.push(['Cards (cards8)']);
 
   cardColumns.forEach((col) => {
     // Defensive: find the card wrapper
     const card = col.querySelector('.lp__card_wrapper');
     if (!card) return;
 
-    // Image cell: find the <picture> or <img>
-    let imageCell = null;
-    const imgContainer = card.querySelector('.lp__card_img');
-    if (imgContainer) {
-      // Use the <picture> element if present, else <img>
-      const picture = imgContainer.querySelector('picture');
+    // Image: get the <picture> or <img> inside .lp__card_img
+    let imgCell = null;
+    const imgWrap = card.querySelector('.lp__card_img');
+    if (imgWrap) {
+      // Prefer <picture> if present, else <img>
+      const picture = imgWrap.querySelector('picture');
       if (picture) {
-        imageCell = picture;
+        imgCell = picture;
       } else {
-        const img = imgContainer.querySelector('img');
-        if (img) imageCell = img;
+        const img = imgWrap.querySelector('img');
+        if (img) imgCell = img;
       }
     }
 
     // Text cell: title, description, CTA
-    const contentContainer = card.querySelector('.lp__card_content');
+    const contentWrap = card.querySelector('.lp__card_content');
     const textCellContent = [];
-    if (contentContainer) {
-      // Title (as heading)
-      const title = contentContainer.querySelector('.lp__card_title');
+    if (contentWrap) {
+      // Title (h3 > a)
+      const title = contentWrap.querySelector('.lp__card_title');
       if (title) textCellContent.push(title);
       // Description
-      const desc = contentContainer.querySelector('.lp__card_description');
+      const desc = contentWrap.querySelector('.lp__card_description');
       if (desc) textCellContent.push(desc);
     }
-    // CTA: overlay link (not the title link)
-    const overlayLink = card.querySelector('.lp__overlay-link');
-    if (overlayLink) {
-      // Only add if it's not the same as the title link
-      textCellContent.push(overlayLink);
-    }
+    // CTA: overlay link (outside contentWrap)
+    const ctaLink = card.querySelector('.lp__overlay-link');
+    if (ctaLink) textCellContent.push(ctaLink);
 
-    // Defensive: if no image or text, skip
-    if (!imageCell && textCellContent.length === 0) return;
-    rows.push([imageCell, textCellContent]);
+    // Defensive: only add row if image and text
+    if (imgCell && textCellContent.length) {
+      rows.push([imgCell, textCellContent]);
+    }
   });
 
   // Create the block table
   const table = WebImporter.DOMUtils.createTable(rows, document);
+  // Replace the original element
   element.replaceWith(table);
 }

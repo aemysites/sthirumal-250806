@@ -1,74 +1,94 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Defensive: Find the cards container
-  const cardsContainer = element.querySelector('.lp__list_navcomponents > ul');
-  if (!cardsContainer) return;
+  // Helper to extract the image from a card
+  function getImage(card) {
+    // Find the <img> inside the .lp__lg_horizontal_img
+    const imgContainer = Array.from(card.children).find(child => child.classList && child.classList.contains('lp__lg_horizontal_img'));
+    if (!imgContainer) return null;
+    const img = imgContainer.querySelector('img');
+    return img || null;
+  }
 
-  // Table header row
-  const headerRow = ['Cards (cards33)'];
-  const rows = [headerRow];
+  // Helper to extract the text content from a card
+  function getTextContent(card) {
+    const contentContainer = Array.from(card.children).find(child => child.classList && child.classList.contains('lp__list_navigation_content'));
+    if (!contentContainer) return null;
 
-  // Get all card list items
-  const cardItems = cardsContainer.querySelectorAll(':scope > li.lp__list_navigation_section');
-
-  cardItems.forEach((li) => {
-    // --- IMAGE CELL ---
-    // Find the image container
-    const imgContainer = li.querySelector('.lp__lg_horizontal_img');
-    let imageEl = null;
-    if (imgContainer) {
-      // Use the <img> inside <picture>
-      imageEl = imgContainer.querySelector('img');
-    }
-
-    // --- TEXT CELL ---
-    const textParts = [];
-    // Title (as heading)
-    const titleDiv = li.querySelector('.lp__list_navigation_title');
+    // Title
+    const titleDiv = contentContainer.querySelector('.lp__list_navigation_title');
+    let title = null;
     if (titleDiv) {
+      // Use the <a> inside as the heading
       const link = titleDiv.querySelector('a');
       if (link) {
-        // Create heading element
-        const heading = document.createElement('h3');
+        // Create a heading element (h3)
+        title = document.createElement('h3');
         // Move the link into the heading
-        heading.appendChild(link);
-        textParts.push(heading);
-      }
-    }
-    // Subtitle/Meta (E-Learning | Environment ...)
-    const metaDiv = li.querySelector('.lp__hammer');
-    if (metaDiv) {
-      // Use <div> for meta info, style as needed later
-      textParts.push(metaDiv);
-    }
-    // Description (can be multiple paragraphs)
-    const blurbDiv = li.querySelector('.lp__blurb_text');
-    if (blurbDiv) {
-      // Defensive: Only keep non-empty paragraphs
-      const paragraphs = Array.from(blurbDiv.querySelectorAll('p')).filter(p => p.textContent.trim() && p.innerHTML.trim() !== '&nbsp;');
-      paragraphs.forEach(p => textParts.push(p));
-    }
-    // CTA: Use the overlay link if present and not already used
-    const overlayLink = li.querySelector('a.lp__overlay-link');
-    if (overlayLink) {
-      // Only add if not already present in heading
-      const headingLink = titleDiv && titleDiv.querySelector('a');
-      if (headingLink && headingLink.href !== overlayLink.href) {
-        textParts.push(overlayLink);
-      } else if (!headingLink) {
-        textParts.push(overlayLink);
+        title.appendChild(link);
       }
     }
 
-    // Compose row: [image, text]
+    // Subtitle (hammer)
+    const hammerDiv = contentContainer.querySelector('.lp__hammer');
+    let subtitle = null;
+    if (hammerDiv) {
+      subtitle = document.createElement('p');
+      subtitle.innerHTML = `<strong>${hammerDiv.textContent.trim()}</strong>`;
+    }
+
+    // Description
+    const blurbDiv = contentContainer.querySelector('.lp__blurb_text');
+    let description = null;
+    if (blurbDiv) {
+      // Use all <p> elements inside
+      const paragraphs = Array.from(blurbDiv.querySelectorAll('p')).filter(p => p.textContent.trim() !== '' && p.innerHTML.trim() !== '&nbsp;');
+      if (paragraphs.length > 0) {
+        description = document.createElement('div');
+        paragraphs.forEach(p => description.appendChild(p));
+      }
+    }
+
+    // Call-to-action: use the overlay link (not the title link)
+    const overlayLink = card.querySelector('.lp__overlay-link');
+    let cta = null;
+    if (overlayLink) {
+      cta = document.createElement('p');
+      const link = document.createElement('a');
+      link.href = overlayLink.getAttribute('href');
+      link.textContent = overlayLink.textContent.trim();
+      cta.appendChild(link);
+    }
+
+    // Compose all parts into a single cell
+    const cellContent = [];
+    if (title) cellContent.push(title);
+    if (subtitle) cellContent.push(subtitle);
+    if (description) cellContent.push(description);
+    if (cta) cellContent.push(cta);
+    return cellContent;
+  }
+
+  // Find all cards (li.lp__list_navigation_section)
+  const cards = element.querySelectorAll('li.lp__list_navigation_section');
+
+  // Build table rows
+  const rows = [];
+  // Header row
+  rows.push(['Cards (cards33)']);
+
+  // Card rows
+  cards.forEach(card => {
+    const img = getImage(card);
+    const textContent = getTextContent(card);
     rows.push([
-      imageEl || '',
-      textParts
+      img ? img : '',
+      textContent
     ]);
   });
 
-  // Create the block table
+  // Create the table block
   const block = WebImporter.DOMUtils.createTable(rows, document);
+
   // Replace the original element
   element.replaceWith(block);
 }

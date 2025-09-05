@@ -1,19 +1,26 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Defensive: get all direct ft-social-list children
+  if (!element) return;
+
+  // Get all direct children with class 'ft-social-list' (should be 3 columns)
   const lists = Array.from(element.querySelectorAll(':scope > .ft-social-list'));
-  if (lists.length < 3) return; // Expecting 3 columns
 
-  // Header row as per requirements
+  // Defensive: if not exactly 3, fallback to all direct children
+  let columns;
+  if (lists.length === 3) {
+    columns = lists;
+  } else {
+    columns = Array.from(element.children);
+  }
+
+  // Build the table rows
   const headerRow = ['Columns (columns1)'];
+  const contentRow = columns;
 
-  // Second row: each column is a .ft-social-list
-  const contentRow = lists;
+  const table = WebImporter.DOMUtils.createTable([
+    headerRow,
+    contentRow
+  ], document);
 
-  // Build the table
-  const cells = [headerRow, contentRow];
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-
-  // Replace original element
-  element.replaceWith(block);
+  element.replaceWith(table);
 }

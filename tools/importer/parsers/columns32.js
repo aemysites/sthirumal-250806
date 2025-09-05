@@ -1,70 +1,76 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Defensive: Find the main eventDetailsAcademy section
-  const academySection = element.querySelector('.eventDetailsAcademy.section');
-  if (!academySection) return;
-
-  // Find the top banner (main content)
-  const topBanner = academySection.querySelector('.eventdetail_top_banner');
-  if (!topBanner) return;
-
-  // Find the main content and image columns
-  const eventSection = topBanner.querySelector('.eventdetail-section');
-  if (!eventSection) return;
-
-  // Left column: Title, Description, Button
-  const content = eventSection.querySelector('.eventdetail__content');
-  // Defensive: If not found, skip
-  if (!content) return;
-
-  // Right column: Image
-  const imageWrapper = eventSection.querySelector('.eventdetail__image');
-  let imageEl = null;
-  if (imageWrapper) {
-    // Find the <img> inside <picture>
-    const img = imageWrapper.querySelector('img');
-    if (img) imageEl = img;
+  // Helper to find the main event detail block
+  function findEventDetailBlock(el) {
+    return el.querySelector('.eventDetailsAcademy.section') || el.querySelector('.eventdetail_top_banner');
   }
 
-  // Bottom row: Delivery Mode & Language
-  const bannerBottom = academySection.querySelector('.eventdetail_banner_bottom_content');
-  let deliveryMode = null;
-  let language = null;
+  // Defensive: find the main event detail block
+  const eventDetailBlock = findEventDetailBlock(element);
+  if (!eventDetailBlock) return;
+
+  // Find the main banner (contains title, desc, image, etc)
+  const topBanner = eventDetailBlock.querySelector('.eventdetail_top_banner') || eventDetailBlock;
+  if (!topBanner) return;
+
+  // Find the section that contains the two main columns (content and image)
+  const section = topBanner.querySelector('.eventdetail-section');
+  if (!section) return;
+
+  // Left column: content (title, desc, button)
+  const content = section.querySelector('.eventdetail__content');
+  // Right column: image
+  const image = section.querySelector('.eventdetail__image');
+
+  // Compose left cell: content (title, desc, button if present)
+  const leftCellContent = [];
+  if (content) {
+    // Title
+    const title = content.querySelector('.eventdetail__title');
+    if (title) leftCellContent.push(title);
+    // Description
+    const desc = content.querySelector('.eventdetail__description');
+    if (desc) leftCellContent.push(desc);
+    // Action button (if present)
+    const action = content.querySelector('.eventdetail__action-container');
+    if (action) leftCellContent.push(action);
+  }
+
+  // Compose right cell: image (picture only)
+  let rightCellContent = [];
+  if (image) {
+    const picture = image.querySelector('picture');
+    if (picture) rightCellContent.push(picture);
+  }
+
+  // Second row: two columns (left: content, right: image)
+  const secondRow = [leftCellContent, rightCellContent];
+
+  // Third row: delivery mode and language
+  // Find the banner bottom content (contains two .text blocks)
+  const bannerBottom = eventDetailBlock.querySelector('.eventdetail_banner_bottom_content');
   if (bannerBottom) {
-    const texts = bannerBottom.querySelectorAll('.eventdetail-text');
-    if (texts.length >= 2) {
-      deliveryMode = texts[0];
-      language = texts[1];
+    // Get all direct children with class .text
+    const textBlocks = bannerBottom.querySelectorAll(':scope > .text');
+    const thirdRow = Array.from(textBlocks);
+    // Only add third row if there are at least two columns
+    if (thirdRow.length >= 2) {
+      const cells = [
+        ['Columns (columns32)'],
+        secondRow,
+        thirdRow,
+      ];
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      element.replaceWith(table);
+      return;
     }
   }
 
-  // Build the header row
-  const headerRow = ['Columns (columns32)'];
-
-  // Build the main columns row
-  const columnsRow = [
-    // Left column: content (title, description, button)
-    content,
-    // Right column: image
-    imageEl ? imageEl : ''
-  ];
-
-  // Build the bottom row (Delivery Mode, Language)
-  const bottomRow = [
-    deliveryMode ? deliveryMode : '',
-    language ? language : ''
-  ];
-
-  // Compose the table cells
+  // Fallback: if no bottom content, just two rows
   const cells = [
-    headerRow,
-    columnsRow,
-    bottomRow
+    ['Columns (columns32)'],
+    secondRow,
   ];
-
-  // Create the block table
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-
-  // Replace the original element with the block table
-  element.replaceWith(block);
+  const table = WebImporter.DOMUtils.createTable(cells, document);
+  element.replaceWith(table);
 }

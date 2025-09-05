@@ -1,27 +1,24 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Get all immediate column divs
+  // Defensive: get all direct column divs
   const columns = Array.from(element.querySelectorAll(':scope .row > div'));
-  if (!columns.length) return;
 
-  // For each column, extract the content block (preserving all text, images, and structure)
+  // For each column, grab the main content block (the .lp__listnav_icon_cta)
   const columnCells = columns.map((col) => {
-    // Use the main content wrapper if present
-    const content = col.querySelector('.lp__listnav_icon_cta') || col;
-    // Reference the existing element (do not clone)
-    return content;
+    // Find the main content container in each column
+    const content = col.querySelector('.lp__listnav_icon_cta');
+    // Defensive: if not found, fallback to the column itself
+    return content || col;
   });
 
   // Build the table rows
   const headerRow = ['Columns (columns20)'];
   const contentRow = columnCells;
+  const tableRows = [headerRow, contentRow];
 
-  // Create the table using DOMUtils
-  const table = WebImporter.DOMUtils.createTable([
-    headerRow,
-    contentRow,
-  ], document);
+  // Create the block table
+  const block = WebImporter.DOMUtils.createTable(tableRows, document);
 
-  // Replace the original element with the table
-  element.replaceWith(table);
+  // Replace the original element with the new block
+  element.replaceWith(block);
 }
