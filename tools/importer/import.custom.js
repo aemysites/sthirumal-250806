@@ -37,4 +37,18 @@ export const customElements = [];
 /**
  * Custom transformers
  */
-export const customTransformers = {};
+/*export const customTransformers = {};*/
+/* to remove header while importing content */
+export const customTransformers = {
+  inject: (hookName, element, { document }) => {
+    if (hookName === 'beforePageTransform') {
+      try {
+        if (document && document.querySelector) {
+          document.querySelector('header')?.remove();
+        }
+      } catch (e) {
+        console.warn('Failed to remove header element', e);
+      }
+    }
+  }
+};
