@@ -44,7 +44,8 @@ export const customTransformers = {
     if (hookName === 'beforePageTransform') {
       try {
         if (document && document.querySelector) {
-          document.querySelector('header')?.remove();
+          //document.querySelector('header')?.remove();
+          document.querySelectorAll('.lp__navbar.lp__navbar_default')?.forEach((el) => el.remove());
         }
       } catch (e) {
         console.warn('Failed to remove header element', e);
