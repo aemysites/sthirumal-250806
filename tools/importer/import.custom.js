@@ -42,7 +42,7 @@ export const customTransformers = {
     if (hookName === 'beforePageTransform') {
       try {
         document.querySelector('header')?.remove();
-        document.querySelector("#cookieconsentpopup")?.remove();
+        document.querySelector('#cookieconsentpopup')?.remove();
       } 
       catch (e) {
         console.warn('Failed to remove elements', e);
