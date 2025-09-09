@@ -37,4 +37,16 @@ export const customElements = [];
 /**
  * Custom transformers
  */
-export const customTransformers = {};
+export const customTransformers = {
+  inject: (hookName, element, { document }) => {
+    if (hookName === 'beforePageTransform') {
+      try {
+        document.querySelector('header')?.remove();
+        document.querySelector("#cookieconsentpopup")?.remove();
+      } 
+      catch (e) {
+        console.warn('Failed to remove elements', e);
+      }
+    }
+  }
+};
