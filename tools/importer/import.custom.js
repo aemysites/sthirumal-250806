@@ -42,6 +42,7 @@ export const customTransformers = {
     if (hookName === 'beforePageTransform') {
       try {
         document.querySelector('header')?.remove();
+        document.querySelector('.acheader')?.remove();
         document.querySelector('#cookieconsentpopup')?.remove();
       } 
       catch (e) {
