@@ -8103,16 +8103,7 @@
           "urlHash": "f53297a4c8d13af5cbfa5ed3c1bc2a1be548a34f",
           "uuid": "f53297a4-05-ce196a5545604dffed48b2a1fa9461131411c33f",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 7,
-      "source": "Cards",
-      "target": "Cards (cards7)",
-      "key": "cards7",
-      "instances": [
+        },
         {
           "url": "https://academy.worldbank.org/en/people/education",
           "urlHash": "0212f2aec15af2974ea5992ddadb3f48ec5c54f4",
