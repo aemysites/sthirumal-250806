@@ -8127,6 +8127,12 @@
           "urlHash": "e3e64bbaff0a87ca681fb3f1514af40c939c824f",
           "uuid": "e3e64bba-04-ce196a5545604dffed48b2a1fa9461131411c33f",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/planet/environment",
+          "urlHash": "86b793e8fe9a576d6c3645f69501d98ae400030d",
+          "uuid": "86b793e8-05-052359c2ae8868b4d9970503bb883f26a6a99258",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]"
         }
       ]
     },
@@ -9361,21 +9367,6 @@
           "urlHash": "c1180e5bf451588210250bbfa9b2e1c7a21d9695",
           "uuid": "c1180e5b-04-145cfc119126ff391058e6284204177c7f84a271",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 16,
-      "source": "Cards",
-      "target": "Cards (cards16)",
-      "key": "cards16",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/planet/environment",
-          "urlHash": "86b793e8fe9a576d6c3645f69501d98ae400030d",
-          "uuid": "86b793e8-05-052359c2ae8868b4d9970503bb883f26a6a99258",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]"
         }
       ]
     },
