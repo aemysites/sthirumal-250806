@@ -8223,6 +8223,12 @@
           "urlHash": "fa16ea5aa069233d964ad6a8615f712c5a7804bd",
           "uuid": "fa16ea5a-05-ce196a5545604dffed48b2a1fa9461131411c33f",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/infrastructure/infrastructure-finance",
+          "urlHash": "b1d744e4b4046e4a6e936c309e07926f649cb6c3",
+          "uuid": "b1d744e4-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
@@ -9680,21 +9686,6 @@
           "urlHash": "268bc3dd5d19ab59703bf103cba7ec6a39ca7ea8",
           "uuid": "268bc3dd-03-ba88dbd4c349df5148a1fdadf30165b40721fe0c",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 37,
-      "source": "Cards",
-      "target": "Cards (cards37)",
-      "key": "cards37",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/infrastructure/infrastructure-finance",
-          "urlHash": "b1d744e4b4046e4a6e936c309e07926f649cb6c3",
-          "uuid": "b1d744e4-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     }
