@@ -8145,6 +8145,12 @@
           "urlHash": "53aa412d6589ae97430d4c44b0b32d00c172bfb0",
           "uuid": "53aa412d-04-ce196a5545604dffed48b2a1fa9461131411c33f",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/cross-cutting/gender",
+          "urlHash": "9d52274aa97abde3694f6984e31d21d31bbc8c14",
+          "uuid": "9d52274a-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
@@ -9409,21 +9415,6 @@
           "uuid": "ec909cc7-02-d8e466075b8852aa0e1a5d06d14dfdd0c49c1353",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]",
           "section": "section-2"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 18,
-      "source": "Cards",
-      "target": "Cards (cards18)",
-      "key": "cards18",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/cross-cutting/gender",
-          "urlHash": "9d52274aa97abde3694f6984e31d21d31bbc8c14",
-          "uuid": "9d52274a-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
