@@ -8151,6 +8151,18 @@
           "urlHash": "9d52274aa97abde3694f6984e31d21d31bbc8c14",
           "uuid": "9d52274a-05-ce196a5545604dffed48b2a1fa9461131411c33f",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/infrastructure/transport",
+          "urlHash": "0851a393be181e9b85a1c6190f6acc9564bbb55f",
+          "uuid": "0851a393-04-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/infrastructure/energy",
+          "urlHash": "3edd7f855fc75a92edce78bbcd5f83c7f9ab49eb",
+          "uuid": "3edd7f85-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
@@ -9460,27 +9472,6 @@
           "urlHash": "0b55bc0a19c206c62f3cd30478048a251938ad54",
           "uuid": "0b55bc0a-04-c145408995063332f0dd8636553100a4328c5943",
           "xpath": "/html[1]/body[1]/main[1]/div[2]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/section[1]/div[2]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 22,
-      "source": "Cards",
-      "target": "Cards (cards22)",
-      "key": "cards22",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/infrastructure/transport",
-          "urlHash": "0851a393be181e9b85a1c6190f6acc9564bbb55f",
-          "uuid": "0851a393-04-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/infrastructure/energy",
-          "urlHash": "3edd7f855fc75a92edce78bbcd5f83c7f9ab49eb",
-          "uuid": "3edd7f85-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
