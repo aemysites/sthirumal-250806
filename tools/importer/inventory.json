@@ -8199,6 +8199,30 @@
           "urlHash": "8fbc509616a2a15b4c1ca72ea6770386693e1a63",
           "uuid": "8fbc5096-04-ce196a5545604dffed48b2a1fa9461131411c33f",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/prosperity/institutions",
+          "urlHash": "36b84849778aef79eb813ba6df7cf2e082e25d9a",
+          "uuid": "36b84849-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/prosperity/poverty",
+          "urlHash": "49fb6967439fb5f3b4873b709e482699247b9008",
+          "uuid": "49fb6967-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/planet/agriculture",
+          "urlHash": "8fbc509616a2a15b4c1ca72ea6770386693e1a63",
+          "uuid": "8fbc5096-05-052359c2ae8868b4d9970503bb883f26a6a99258",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/people/social-protection",
+          "urlHash": "fa16ea5aa069233d964ad6a8615f712c5a7804bd",
+          "uuid": "fa16ea5a-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
@@ -9641,39 +9665,6 @@
           "urlHash": "110a2ea91c6ade23604d57800353c14af3ef3a7f",
           "uuid": "110a2ea9-03-86654d08867d909f506c88ad68301ee889fc505e",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 34,
-      "source": "Cards",
-      "target": "Cards (cards34)",
-      "key": "cards34",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/prosperity/institutions",
-          "urlHash": "36b84849778aef79eb813ba6df7cf2e082e25d9a",
-          "uuid": "36b84849-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/prosperity/poverty",
-          "urlHash": "49fb6967439fb5f3b4873b709e482699247b9008",
-          "uuid": "49fb6967-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/planet/agriculture",
-          "urlHash": "8fbc509616a2a15b4c1ca72ea6770386693e1a63",
-          "uuid": "8fbc5096-05-052359c2ae8868b4d9970503bb883f26a6a99258",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/people/social-protection",
-          "urlHash": "fa16ea5aa069233d964ad6a8615f712c5a7804bd",
-          "uuid": "fa16ea5a-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
