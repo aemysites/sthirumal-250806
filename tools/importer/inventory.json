@@ -8130,6 +8130,24 @@
           "urlHash": "0b55bc0a19c206c62f3cd30478048a251938ad54",
           "uuid": "0b55bc0a-14-93a46aff0d61b68bc6436abacb659c36fbbbf4c4",
           "xpath": "/html[1]/body[1]/main[1]/div[2]/div[7]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/tab[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/our-programs/by-theme",
+          "urlHash": "268bc3dd5d19ab59703bf103cba7ec6a39ca7ea8",
+          "uuid": "268bc3dd-04-7415e70680c5fbad4c8186064b14b6459cdf1863",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/our-programs/by-theme",
+          "urlHash": "268bc3dd5d19ab59703bf103cba7ec6a39ca7ea8",
+          "uuid": "268bc3dd-05-84160ad4a5fabb8633442c89cd09b3c51fccc3b2",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/our-programs/by-theme",
+          "urlHash": "268bc3dd5d19ab59703bf103cba7ec6a39ca7ea8",
+          "uuid": "268bc3dd-06-5919acaf8bef20d698d55ffe23465b9ba0e725e9",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]"
         }
       ]
     },
@@ -9539,33 +9557,6 @@
           "uuid": "ddbe0d1c-03-6ee14d8f42f6b6d51bab997fa968935d242fd873",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]",
           "section": "section-3"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 26,
-      "source": "Cards",
-      "target": "Cards (cards26)",
-      "key": "cards26",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/our-programs/by-theme",
-          "urlHash": "268bc3dd5d19ab59703bf103cba7ec6a39ca7ea8",
-          "uuid": "268bc3dd-04-7415e70680c5fbad4c8186064b14b6459cdf1863",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/our-programs/by-theme",
-          "urlHash": "268bc3dd5d19ab59703bf103cba7ec6a39ca7ea8",
-          "uuid": "268bc3dd-05-84160ad4a5fabb8633442c89cd09b3c51fccc3b2",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/our-programs/by-theme",
-          "urlHash": "268bc3dd5d19ab59703bf103cba7ec6a39ca7ea8",
-          "uuid": "268bc3dd-06-5919acaf8bef20d698d55ffe23465b9ba0e725e9",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]"
         }
       ]
     },
