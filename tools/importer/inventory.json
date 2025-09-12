@@ -8133,6 +8133,12 @@
           "urlHash": "86b793e8fe9a576d6c3645f69501d98ae400030d",
           "uuid": "86b793e8-05-052359c2ae8868b4d9970503bb883f26a6a99258",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/prosperity/fci",
+          "urlHash": "22471182f419f1d831ab0f46a6846599b2083793",
+          "uuid": "22471182-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
@@ -9407,12 +9413,6 @@
       "target": "Cards (cards18)",
       "key": "cards18",
       "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/prosperity/fci",
-          "urlHash": "22471182f419f1d831ab0f46a6846599b2083793",
-          "uuid": "22471182-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        },
         {
           "url": "https://academy.worldbank.org/en/planet/climate-change",
           "urlHash": "53aa412d6589ae97430d4c44b0b32d00c172bfb0",
