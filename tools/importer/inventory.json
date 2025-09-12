@@ -8088,6 +8088,12 @@
           "urlHash": "4c8f03d8e4b29f3b84b6b2bf14c33fc4a1be2cd8",
           "uuid": "4c8f03d8-13-af3938998dd508a301a135e69fda85e0de425189",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[5]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/our-programs/by-sector",
+          "urlHash": "4c8f03d8e4b29f3b84b6b2bf14c33fc4a1be2cd8",
+          "uuid": "4c8f03d8-17-cdfe8225a6572d8090db46e223919d6f06564349",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[7]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
@@ -9304,21 +9310,6 @@
           "uuid": "60a66424-02-d8e466075b8852aa0e1a5d06d14dfdd0c49c1353",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]",
           "section": "section-2"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 12,
-      "source": "Cards",
-      "target": "Cards (cards12)",
-      "key": "cards12",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/our-programs/by-sector",
-          "urlHash": "4c8f03d8e4b29f3b84b6b2bf14c33fc4a1be2cd8",
-          "uuid": "4c8f03d8-17-cdfe8225a6572d8090db46e223919d6f06564349",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[7]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
