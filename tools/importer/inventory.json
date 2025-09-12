@@ -8133,6 +8133,102 @@
           "urlHash": "86b793e8fe9a576d6c3645f69501d98ae400030d",
           "uuid": "86b793e8-05-052359c2ae8868b4d9970503bb883f26a6a99258",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/prosperity/fci",
+          "urlHash": "22471182f419f1d831ab0f46a6846599b2083793",
+          "uuid": "22471182-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/planet/climate-change",
+          "urlHash": "53aa412d6589ae97430d4c44b0b32d00c172bfb0",
+          "uuid": "53aa412d-04-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/cross-cutting/gender",
+          "urlHash": "9d52274aa97abde3694f6984e31d21d31bbc8c14",
+          "uuid": "9d52274a-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/infrastructure/transport",
+          "urlHash": "0851a393be181e9b85a1c6190f6acc9564bbb55f",
+          "uuid": "0851a393-04-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/infrastructure/energy",
+          "urlHash": "3edd7f855fc75a92edce78bbcd5f83c7f9ab49eb",
+          "uuid": "3edd7f85-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/cross-cutting/jobs",
+          "urlHash": "5af7996d692e0fb80fc747efb3060aeee8c2c665",
+          "uuid": "5af7996d-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/prosperity/economic-policy",
+          "urlHash": "a99d67a7debec8d77276eedab398c9523665229b",
+          "uuid": "a99d67a7-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/events",
+          "urlHash": "59ebe54f2646d4cbce8b244d02e408aa3a416f55",
+          "uuid": "59ebe54f-02-0c380e199633cb4db43425bcf9c66bf9b71896fd",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[3]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/people/health",
+          "urlHash": "215f3a413cac42bc448285002a3851c0d48b42e8",
+          "uuid": "215f3a41-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/infrastructure/urban-resilience",
+          "urlHash": "8961d6139b2509c9d3edf536cf3b6d4f2d2b304f",
+          "uuid": "8961d613-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/planet/agriculture",
+          "urlHash": "8fbc509616a2a15b4c1ca72ea6770386693e1a63",
+          "uuid": "8fbc5096-04-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/prosperity/institutions",
+          "urlHash": "36b84849778aef79eb813ba6df7cf2e082e25d9a",
+          "uuid": "36b84849-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/prosperity/poverty",
+          "urlHash": "49fb6967439fb5f3b4873b709e482699247b9008",
+          "uuid": "49fb6967-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/planet/agriculture",
+          "urlHash": "8fbc509616a2a15b4c1ca72ea6770386693e1a63",
+          "uuid": "8fbc5096-05-052359c2ae8868b4d9970503bb883f26a6a99258",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/people/social-protection",
+          "urlHash": "fa16ea5aa069233d964ad6a8615f712c5a7804bd",
+          "uuid": "fa16ea5a-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/infrastructure/infrastructure-finance",
+          "urlHash": "b1d744e4b4046e4a6e936c309e07926f649cb6c3",
+          "uuid": "b1d744e4-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
@@ -9401,33 +9497,6 @@
       ]
     },
     {
-      "name": "Cards",
-      "cluster": 18,
-      "source": "Cards",
-      "target": "Cards (cards18)",
-      "key": "cards18",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/prosperity/fci",
-          "urlHash": "22471182f419f1d831ab0f46a6846599b2083793",
-          "uuid": "22471182-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/planet/climate-change",
-          "urlHash": "53aa412d6589ae97430d4c44b0b32d00c172bfb0",
-          "uuid": "53aa412d-04-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/cross-cutting/gender",
-          "urlHash": "9d52274aa97abde3694f6984e31d21d31bbc8c14",
-          "uuid": "9d52274a-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        }
-      ]
-    },
-    {
       "name": "header",
       "cluster": 19,
       "source": "Header",
@@ -9469,27 +9538,6 @@
           "urlHash": "0b55bc0a19c206c62f3cd30478048a251938ad54",
           "uuid": "0b55bc0a-04-c145408995063332f0dd8636553100a4328c5943",
           "xpath": "/html[1]/body[1]/main[1]/div[2]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/section[1]/div[2]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 22,
-      "source": "Cards",
-      "target": "Cards (cards22)",
-      "key": "cards22",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/infrastructure/transport",
-          "urlHash": "0851a393be181e9b85a1c6190f6acc9564bbb55f",
-          "uuid": "0851a393-04-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/infrastructure/energy",
-          "urlHash": "3edd7f855fc75a92edce78bbcd5f83c7f9ab49eb",
-          "uuid": "3edd7f85-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
@@ -9613,27 +9661,6 @@
     },
     {
       "name": "Cards",
-      "cluster": 30,
-      "source": "Cards",
-      "target": "Cards (cards30)",
-      "key": "cards30",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/cross-cutting/jobs",
-          "urlHash": "5af7996d692e0fb80fc747efb3060aeee8c2c665",
-          "uuid": "5af7996d-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/prosperity/economic-policy",
-          "urlHash": "a99d67a7debec8d77276eedab398c9523665229b",
-          "uuid": "a99d67a7-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
       "cluster": 31,
       "source": "Cards",
       "target": "Cards (cards31)",
@@ -9649,75 +9676,6 @@
     },
     {
       "name": "Cards",
-      "cluster": 32,
-      "source": "Cards",
-      "target": "Cards (cards32)",
-      "key": "cards32",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/people/health",
-          "urlHash": "215f3a413cac42bc448285002a3851c0d48b42e8",
-          "uuid": "215f3a41-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 33,
-      "source": "Cards",
-      "target": "Cards (cards33)",
-      "key": "cards33",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/infrastructure/urban-resilience",
-          "urlHash": "8961d6139b2509c9d3edf536cf3b6d4f2d2b304f",
-          "uuid": "8961d613-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/planet/agriculture",
-          "urlHash": "8fbc509616a2a15b4c1ca72ea6770386693e1a63",
-          "uuid": "8fbc5096-04-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 34,
-      "source": "Cards",
-      "target": "Cards (cards34)",
-      "key": "cards34",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/prosperity/institutions",
-          "urlHash": "36b84849778aef79eb813ba6df7cf2e082e25d9a",
-          "uuid": "36b84849-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/prosperity/poverty",
-          "urlHash": "49fb6967439fb5f3b4873b709e482699247b9008",
-          "uuid": "49fb6967-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/planet/agriculture",
-          "urlHash": "8fbc509616a2a15b4c1ca72ea6770386693e1a63",
-          "uuid": "8fbc5096-05-052359c2ae8868b4d9970503bb883f26a6a99258",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/people/social-protection",
-          "urlHash": "fa16ea5aa069233d964ad6a8615f712c5a7804bd",
-          "uuid": "fa16ea5a-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
       "cluster": 35,
       "source": "Cards",
       "target": "Cards (cards35)",
@@ -9728,36 +9686,6 @@
           "urlHash": "268bc3dd5d19ab59703bf103cba7ec6a39ca7ea8",
           "uuid": "268bc3dd-03-ba88dbd4c349df5148a1fdadf30165b40721fe0c",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 36,
-      "source": "Cards",
-      "target": "Cards (cards36)",
-      "key": "cards36",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/events",
-          "urlHash": "59ebe54f2646d4cbce8b244d02e408aa3a416f55",
-          "uuid": "59ebe54f-02-0c380e199633cb4db43425bcf9c66bf9b71896fd",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[3]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 37,
-      "source": "Cards",
-      "target": "Cards (cards37)",
-      "key": "cards37",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/infrastructure/infrastructure-finance",
-          "urlHash": "b1d744e4b4046e4a6e936c309e07926f649cb6c3",
-          "uuid": "b1d744e4-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     }
