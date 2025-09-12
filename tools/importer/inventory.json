@@ -8187,6 +8187,18 @@
           "urlHash": "215f3a413cac42bc448285002a3851c0d48b42e8",
           "uuid": "215f3a41-05-ce196a5545604dffed48b2a1fa9461131411c33f",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/infrastructure/urban-resilience",
+          "urlHash": "8961d6139b2509c9d3edf536cf3b6d4f2d2b304f",
+          "uuid": "8961d613-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/planet/agriculture",
+          "urlHash": "8fbc509616a2a15b4c1ca72ea6770386693e1a63",
+          "uuid": "8fbc5096-04-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
@@ -9629,27 +9641,6 @@
           "urlHash": "110a2ea91c6ade23604d57800353c14af3ef3a7f",
           "uuid": "110a2ea9-03-86654d08867d909f506c88ad68301ee889fc505e",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 33,
-      "source": "Cards",
-      "target": "Cards (cards33)",
-      "key": "cards33",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/infrastructure/urban-resilience",
-          "urlHash": "8961d6139b2509c9d3edf536cf3b6d4f2d2b304f",
-          "uuid": "8961d613-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        },
-        {
-          "url": "https://academy.worldbank.org/en/planet/agriculture",
-          "urlHash": "8fbc509616a2a15b4c1ca72ea6770386693e1a63",
-          "uuid": "8fbc5096-04-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
