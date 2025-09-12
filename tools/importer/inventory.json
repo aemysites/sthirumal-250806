@@ -8181,6 +8181,12 @@
           "urlHash": "59ebe54f2646d4cbce8b244d02e408aa3a416f55",
           "uuid": "59ebe54f-02-0c380e199633cb4db43425bcf9c66bf9b71896fd",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[3]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/people/health",
+          "urlHash": "215f3a413cac42bc448285002a3851c0d48b42e8",
+          "uuid": "215f3a41-05-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
@@ -9623,21 +9629,6 @@
           "urlHash": "110a2ea91c6ade23604d57800353c14af3ef3a7f",
           "uuid": "110a2ea9-03-86654d08867d909f506c88ad68301ee889fc505e",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 32,
-      "source": "Cards",
-      "target": "Cards (cards32)",
-      "key": "cards32",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/people/health",
-          "urlHash": "215f3a413cac42bc448285002a3851c0d48b42e8",
-          "uuid": "215f3a41-05-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
