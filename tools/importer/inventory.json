@@ -8124,6 +8124,12 @@
           "urlHash": "c1180e5bf451588210250bbfa9b2e1c7a21d9695",
           "uuid": "c1180e5b-04-145cfc119126ff391058e6284204177c7f84a271",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/home",
+          "urlHash": "0b55bc0a19c206c62f3cd30478048a251938ad54",
+          "uuid": "0b55bc0a-14-93a46aff0d61b68bc6436abacb659c36fbbbf4c4",
+          "xpath": "/html[1]/body[1]/main[1]/div[2]/div[7]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/tab[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
@@ -9533,21 +9539,6 @@
           "uuid": "ddbe0d1c-03-6ee14d8f42f6b6d51bab997fa968935d242fd873",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]",
           "section": "section-3"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 25,
-      "source": "Cards",
-      "target": "Cards (cards25)",
-      "key": "cards25",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/home",
-          "urlHash": "0b55bc0a19c206c62f3cd30478048a251938ad54",
-          "uuid": "0b55bc0a-14-93a46aff0d61b68bc6436abacb659c36fbbbf4c4",
-          "xpath": "/html[1]/body[1]/main[1]/div[2]/div[7]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/tab[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
