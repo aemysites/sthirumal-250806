@@ -8139,6 +8139,12 @@
           "urlHash": "22471182f419f1d831ab0f46a6846599b2083793",
           "uuid": "22471182-05-ce196a5545604dffed48b2a1fa9461131411c33f",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/planet/climate-change",
+          "urlHash": "53aa412d6589ae97430d4c44b0b32d00c172bfb0",
+          "uuid": "53aa412d-04-ce196a5545604dffed48b2a1fa9461131411c33f",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
     },
@@ -9413,12 +9419,6 @@
       "target": "Cards (cards18)",
       "key": "cards18",
       "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/planet/climate-change",
-          "urlHash": "53aa412d6589ae97430d4c44b0b32d00c172bfb0",
-          "uuid": "53aa412d-04-ce196a5545604dffed48b2a1fa9461131411c33f",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
-        },
         {
           "url": "https://academy.worldbank.org/en/cross-cutting/gender",
           "urlHash": "9d52274aa97abde3694f6984e31d21d31bbc8c14",
