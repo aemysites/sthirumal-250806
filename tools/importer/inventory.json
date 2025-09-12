@@ -8175,6 +8175,12 @@
           "urlHash": "a99d67a7debec8d77276eedab398c9523665229b",
           "uuid": "a99d67a7-05-ce196a5545604dffed48b2a1fa9461131411c33f",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://academy.worldbank.org/en/events",
+          "urlHash": "59ebe54f2646d4cbce8b244d02e408aa3a416f55",
+          "uuid": "59ebe54f-02-0c380e199633cb4db43425bcf9c66bf9b71896fd",
+          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[3]"
         }
       ]
     },
@@ -9701,21 +9707,6 @@
           "urlHash": "268bc3dd5d19ab59703bf103cba7ec6a39ca7ea8",
           "uuid": "268bc3dd-03-ba88dbd4c349df5148a1fdadf30165b40721fe0c",
           "xpath": "/html[1]/body[1]/main[1]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
-        }
-      ]
-    },
-    {
-      "name": "Cards",
-      "cluster": 36,
-      "source": "Cards",
-      "target": "Cards (cards36)",
-      "key": "cards36",
-      "instances": [
-        {
-          "url": "https://academy.worldbank.org/en/events",
-          "urlHash": "59ebe54f2646d4cbce8b244d02e408aa3a416f55",
-          "uuid": "59ebe54f-02-0c380e199633cb4db43425bcf9c66bf9b71896fd",
-          "xpath": "/html[1]/body[1]/main[1]/div[3]/div[3]"
         }
       ]
     },
