@@ -1,42 +1,49 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Always use the correct header row
-  const headerRow = ['Cards (cards5)'];
-  const rows = [headerRow];
+  // Find the FIRST .gridlayout with .row and .lp__card_wrapper (the main card grid)
+  const grid = element.querySelector('.gridlayout .row .lp__card_wrapper')
+    ? element.querySelector('.gridlayout')
+    : null;
 
-  // Find the correct card container: look for all visible .swiper-slide elements inside .academy-carousel
-  const carousels = element.querySelectorAll('.academy-carousel');
-  carousels.forEach((carousel) => {
-    const slides = carousel.querySelectorAll('.swiper-slide');
-    slides.forEach((slide) => {
-      // Image cell: get the <img> inside .lp-aca-card-img
-      let imgCell = null;
-      const imgWrap = slide.querySelector('.lp-aca-card-img img');
-      if (imgWrap) imgCell = imgWrap.cloneNode(true);
+  if (!grid) return;
 
-      // Text cell: title (h3), description (div), CTA (a) if present
-      const textCellContent = [];
-      const contentWrap = slide.querySelector('.lp-aca-card-content');
-      if (contentWrap) {
-        // Title (h3)
-        const title = contentWrap.querySelector('.lp-aca-card-title');
-        if (title) textCellContent.push(title.cloneNode(true));
-        // Description
-        const desc = contentWrap.querySelector('.lp-aca-card-description');
-        if (desc) textCellContent.push(desc.cloneNode(true));
-        // CTA (optional, e.g. .lp-aca-card-link)
-        const cta = contentWrap.querySelector('.lp-aca-card-link');
-        if (cta) textCellContent.push(cta.cloneNode(true));
-      }
-      if (imgCell && textCellContent.length) {
-        rows.push([imgCell, textCellContent]);
-      }
-    });
+  // Get all columns (each card)
+  const columns = grid.querySelectorAll(':scope .row > [class*=colsplit]');
+  const cardRows = [];
+
+  columns.forEach((col) => {
+    const cardWrapper = col.querySelector('.lp__card_wrapper');
+    if (!cardWrapper) return;
+    // Image: prefer <picture>, fallback to <img>
+    let image = cardWrapper.querySelector('.lp__card_img picture');
+    if (!image) {
+      image = cardWrapper.querySelector('.lp__card_img img');
+    }
+    if (image) image = image.cloneNode(true);
+
+    // Text content
+    const content = cardWrapper.querySelector('.lp__card_content');
+    const textDiv = document.createElement('div');
+    if (content) {
+      // Title
+      const title = content.querySelector('.lp__card_title');
+      if (title) textDiv.appendChild(title.cloneNode(true));
+      // Description
+      const desc = content.querySelector('.lp__card_description');
+      if (desc) textDiv.appendChild(desc.cloneNode(true));
+      // CTA (card list)
+      const list = content.querySelector('.lp__card_list');
+      if (list) textDiv.appendChild(list.cloneNode(true));
+    }
+    if (image && textDiv.childNodes.length > 0) {
+      cardRows.push([image, textDiv]);
+    }
   });
 
-  // Only replace if we have more than just the header
-  if (rows.length > 1) {
-    const table = WebImporter.DOMUtils.createTable(rows, document);
-    element.replaceWith(table);
-  }
+  if (!cardRows.length) return;
+
+  const headerRow = ['Cards (cards5)'];
+  const cells = [headerRow, ...cardRows];
+  const table = WebImporter.DOMUtils.createTable(cells, document);
+  element.replaceWith(table);
 }

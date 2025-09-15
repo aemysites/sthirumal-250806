@@ -1,20 +1,28 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Always use a header row with exactly one column
+  // Defensive: Only process expected structure
+  if (!element || !element.classList.contains('eventdetail_banner_bottom_content')) return;
+
+  // Header row as required
   const headerRow = ['Columns (columns3)'];
 
-  // Collect all .text columns as cell content for the second row
-  const columns = Array.from(element.querySelectorAll(':scope > .text'));
+  // Get all immediate child .text blocks (each column)
+  const columnDivs = Array.from(element.querySelectorAll(':scope > .text'));
 
-  // The table must have a single header cell, then a row with N columns
-  const cells = [
-    headerRow,
-    columns.map(col => col)
-  ];
+  // For each column, extract the inner .eventdetail-text div (contains the label and value)
+  const cells = columnDivs.map((col) => {
+    // Defensive: fallback to col if .eventdetail-text missing
+    const content = col.querySelector('.eventdetail-text') || col;
+    // Return the whole content block for resilience
+    return content;
+  });
+
+  // Build the table rows
+  const tableRows = [headerRow, cells];
 
   // Create the block table
-  const block = WebImporter.DOMUtils.createTable(cells, document);
+  const block = WebImporter.DOMUtils.createTable(tableRows, document);
 
-  // Replace the original element with the new block table
+  // Replace original element with block table
   element.replaceWith(block);
 }

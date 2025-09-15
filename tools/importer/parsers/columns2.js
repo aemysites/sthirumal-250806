@@ -1,31 +1,21 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Defensive: Only proceed if element exists and has children
-  if (!element || !element.children || element.children.length === 0) return;
+  // 1. Extract all direct .ft-main-item children as columns
+  const columns = Array.from(element.querySelectorAll(':scope > .ft-main-item'));
 
-  // Header row for the block
+  // 2. Build the header row with the exact block name
   const headerRow = ['Columns (columns2)'];
 
-  // Get all immediate column items (should be 4 for this block)
-  const columnDivs = Array.from(element.querySelectorAll(':scope > div.ft-main-item'));
+  // 3. Each column cell should reference the actual DOM node, not its text or HTML
+  // This preserves all formatting, links, and structure
+  const columnsRow = columns.map((col) => col);
 
-  // Defensive: If no columns found, fallback to all direct children
-  const columns = columnDivs.length > 0 ? columnDivs : Array.from(element.children);
+  // 4. Compose the table data
+  const tableData = [headerRow, columnsRow];
 
-  // For each column, collect its content
-  const contentRow = columns.map((col) => {
-    // Defensive: If the column is empty, return an empty string
-    if (!col || !col.childNodes || col.childNodes.length === 0) return '';
-    // Use the entire column block as the cell content for resilience
-    return col;
-  });
+  // 5. Create the table block using DOMUtils
+  const table = WebImporter.DOMUtils.createTable(tableData, document);
 
-  // Build the table data
-  const cells = [headerRow, contentRow];
-
-  // Create the block table
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-
-  // Replace the original element with the block table
-  element.replaceWith(block);
+  // 6. Replace the original element with the block
+  element.replaceWith(table);
 }

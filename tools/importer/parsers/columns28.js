@@ -1,31 +1,20 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Defensive: get all immediate children of the finder-container
+  // Get all direct children of finder-container for columns
+  const columns = [];
   const children = Array.from(element.querySelectorAll(':scope > *'));
 
-  // Find all dropdowns and the button
-  const dropdowns = children.filter(child => child.classList.contains('custom-dropdown'));
-  const button = children.find(child => child.tagName === 'BUTTON');
+  children.forEach((child) => {
+    // Only include non-empty elements or buttons
+    if (child && (child.textContent.trim() || child.tagName === 'BUTTON')) {
+      columns.push(child);
+    }
+  });
 
-  // Prepare columns: each dropdown as a column, plus the button as last column
-  // Each dropdown and button is referenced directly
-  const columnsRow = [
-    ...dropdowns,
-    button
-  ];
-
-  // Table header
+  // Table header must match block name exactly
   const headerRow = ['Columns (columns28)'];
+  const contentRow = columns;
 
-  // Compose table cells
-  const cells = [
-    headerRow,
-    columnsRow
-  ];
-
-  // Create the block table
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-
-  // Replace the original element
-  element.replaceWith(block);
+  const table = WebImporter.DOMUtils.createTable([headerRow, contentRow], document);
+  element.replaceWith(table);
 }
