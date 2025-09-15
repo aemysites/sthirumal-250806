@@ -2,21 +2,20 @@
 export default function parse(element, { document }) {
   // Defensive: get all direct children with class 'ft-social-list'
   const lists = Array.from(element.querySelectorAll(':scope > .ft-social-list'));
-  if (lists.length < 3) return; // Expecting 3 columns
 
-  // Each column is the content of one .ft-social-list
-  // Use the whole list element for each cell for resilience
-  const columnsRow = lists.map(list => list);
+  // There should be three columns: logo, org links, social icons
+  // Defensive: fallback to empty div if missing
+  const col1 = lists[0] || document.createElement('div');
+  const col2 = lists[1] || document.createElement('div');
+  const col3 = lists[2] || document.createElement('div');
 
-  // Table header
+  // Table structure: header, then one row with three columns
   const headerRow = ['Columns (columns1)'];
+  const contentRow = [col1, col2, col3];
+  const table = WebImporter.DOMUtils.createTable([
+    headerRow,
+    contentRow
+  ], document);
 
-  // Table rows
-  const cells = [headerRow, columnsRow];
-
-  // Create table block
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-
-  // Replace original element
-  element.replaceWith(block);
+  element.replaceWith(table);
 }

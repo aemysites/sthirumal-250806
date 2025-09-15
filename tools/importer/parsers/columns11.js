@@ -1,35 +1,27 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
   // Defensive: find the main content and image columns
-  // The structure is:
-  // <div class="eventdetail_top_banner">
-  //   <div class="eventdetail-section">
-  //     <div class="eventdetail__content">...</div>
-  //     <div class="eventdetail__image">...</div>
-  //   </div>
-  // </div>
-
-  // Find the direct child .eventdetail-section
-  const section = element.querySelector(':scope > .eventdetail-section');
+  const section = element.querySelector('.eventdetail-section');
   if (!section) return;
-
-  // Get the two columns
-  const columns = section.querySelectorAll(':scope > div');
+  const columns = Array.from(section.children);
   if (columns.length < 2) return;
 
-  const contentCol = columns[0]; // .eventdetail__content
-  const imageCol = columns[1];   // .eventdetail__image
+  // First column: content (title + description)
+  const contentCol = columns.find(col => col.classList.contains('eventdetail__content'));
+  // Second column: image
+  const imageCol = columns.find(col => col.classList.contains('eventdetail__image'));
 
-  // Build the table rows
+  if (!contentCol || !imageCol) return;
+
+  // Table header row
   const headerRow = ['Columns (columns11)'];
+  // Table content row: two columns
   const contentRow = [contentCol, imageCol];
 
-  // Create the table block
   const table = WebImporter.DOMUtils.createTable([
     headerRow,
-    contentRow
+    contentRow,
   ], document);
 
-  // Replace the original element with the new table
   element.replaceWith(table);
 }

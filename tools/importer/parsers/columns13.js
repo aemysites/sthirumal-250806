@@ -1,92 +1,83 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper to get immediate child by class
-  function findChildByClass(parent, className) {
-    return Array.from(parent.children).find(el => el.classList.contains(className));
+  // Helper to find the event detail main wrapper
+  function findEventDetailBanner(el) {
+    return el.querySelector('.eventdetail_top_banner');
   }
 
-  // Defensive: find main content wrapper
-  let banner = element.querySelector('.eventdetail_top_banner');
-  if (!banner) {
-    // fallback: search deeper
-    banner = element.querySelector('.eventdetail-section') || element;
+  // Helper to find the bottom content (Delivery Mode, Language)
+  function findBannerBottomContent(el) {
+    return el.querySelector('.eventdetail_banner_bottom_content');
   }
 
-  // Find content and image columns
-  let contentCol, imageCol;
-  const contentWrap = banner.querySelector('.eventdetail__content');
-  const imageWrap = banner.querySelector('.eventdetail__image');
+  // Defensive: Only parse if expected structure is present
+  const banner = findEventDetailBanner(element);
+  if (!banner) return;
 
-  // First column: text content (title, description, button)
-  const col1Els = [];
-  if (contentWrap) {
+  // Get the main section (left: text/button, right: image)
+  const section = banner.querySelector('.eventdetail-section');
+  if (!section) return;
+
+  // Left: Content (title, description, button)
+  const content = section.querySelector('.eventdetail__content');
+  // Right: Image
+  const image = section.querySelector('.eventdetail__image');
+
+  // Compose left column: title, description, button
+  const leftCol = [];
+  if (content) {
     // Title
-    const title = contentWrap.querySelector('.eventdetail__title');
-    if (title) col1Els.push(title);
+    const title = content.querySelector('.eventdetail__title');
+    if (title) leftCol.push(title);
     // Description
-    const desc = contentWrap.querySelector('.eventdetail__description');
-    if (desc) col1Els.push(desc);
-    // Button (if present)
-    const action = contentWrap.querySelector('.eventdetail__action-container');
-    if (action) col1Els.push(action);
+    const desc = content.querySelector('.eventdetail__description');
+    if (desc) leftCol.push(desc);
+    // Button
+    const action = content.querySelector('.eventdetail__action-container');
+    if (action) leftCol.push(action);
   }
 
-  // Second column: image
-  let imgEl = null;
-  if (imageWrap) {
-    // Find <img> inside <picture>
-    const picture = imageWrap.querySelector('picture');
+  // Compose right column: image
+  let rightCol = [];
+  if (image) {
+    // Only the <img> inside <picture>
+    const picture = image.querySelector('picture');
     if (picture) {
-      imgEl = picture.querySelector('img');
+      // Find the <img> inside <picture>
+      const img = picture.querySelector('img');
+      if (img) rightCol.push(img);
     }
   }
 
-  // Banner bottom content (Delivery Mode, Language)
-  let bottomContent = element.querySelector('.eventdetail_banner_bottom_content');
-  if (!bottomContent) {
-    // fallback: search deeper
-    bottomContent = element.querySelector('.eventdetail_banner_bottom_content');
+  // Second row: columns
+  const columnsRow = [leftCol, rightCol];
+
+  // Third row: Delivery Mode / Language
+  const bannerBottom = findBannerBottomContent(banner.parentElement || banner);
+  let bottomRow = null;
+  if (bannerBottom) {
+    // There are two .text blocks, each with a .eventdetail-text
+    const texts = bannerBottom.querySelectorAll('.text');
+    const bottomCells = [];
+    texts.forEach((text) => {
+      const eventText = text.querySelector('.eventdetail-text');
+      if (eventText) {
+        bottomCells.push(eventText);
+      }
+    });
+    // Only add the row if there is content
+    if (bottomCells.length) {
+      bottomRow = bottomCells;
+    }
   }
 
-  // Compose columns for second row
-  const columns = [];
-  // First column: text content
-  columns.push(col1Els);
-  // Second column: image
-  if (imgEl) {
-    columns.push([imgEl]);
-  } else {
-    columns.push([]);
-  }
+  // Build table rows
+  const rows = [];
+  rows.push(['Columns (columns13)']);
+  rows.push(columnsRow);
+  if (bottomRow) rows.push(bottomRow);
 
-  // Third row: bottom content, split into two columns
-  let thirdRow = [];
-  if (bottomContent) {
-    // Find all .text blocks (should be two)
-    const textBlocks = bottomContent.querySelectorAll('.text');
-    thirdRow = Array.from(textBlocks).map(tb => [tb]);
-    // If only one, pad to two columns
-    if (thirdRow.length === 1) thirdRow.push(['']);
-    // Flatten each cell
-    thirdRow = thirdRow.map(cell => cell);
-  } else {
-    // fallback: empty cells
-    thirdRow = ['', ''];
-  }
-
-  // Table header
-  const headerRow = ['Columns (columns13)'];
-
-  // Table rows
-  const tableRows = [
-    headerRow,
-    columns,
-    thirdRow
-  ];
-
-  // Create block table
-  const block = WebImporter.DOMUtils.createTable(tableRows, document);
-
-  // Replace original element
-  element.replaceWith(block);
+  // Create and replace
+  const table = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(table);
 }

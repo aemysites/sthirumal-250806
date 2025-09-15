@@ -1,29 +1,53 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Defensive: Find main content and image columns
-  // Left column: .eventdetail__content
-  // Right column: .eventdetail__image
-  const contentCol = element.querySelector('.eventdetail__content');
-  const imageCol = element.querySelector('.eventdetail__image');
+  // Defensive: find main content and image columns
+  let contentCol, imageCol;
 
-  // Defensive: If not found, fallback to first/second child divs
-  let leftCell = contentCol;
-  let rightCell = imageCol;
-  if (!leftCell || !rightCell) {
-    const divs = element.querySelectorAll(':scope > div > div');
-    leftCell = leftCell || divs[0];
-    rightCell = rightCell || divs[1];
+  // Find the eventdetail__content and eventdetail__image columns
+  const children = Array.from(element.querySelectorAll(':scope > .eventdetail-section > div'));
+  children.forEach((child) => {
+    if (child.classList.contains('eventdetail__content')) {
+      contentCol = child;
+    } else if (child.classList.contains('eventdetail__image')) {
+      imageCol = child;
+    }
+  });
+
+  // Fallback: If not found, try direct children
+  if (!contentCol || !imageCol) {
+    Array.from(element.children).forEach((child) => {
+      if (child.classList.contains('eventdetail__content')) {
+        contentCol = child;
+      } else if (child.classList.contains('eventdetail__image')) {
+        imageCol = child;
+      }
+    });
   }
 
-  // Table header row
+  // Defensive: If still not found, try deeper
+  if (!contentCol) {
+    contentCol = element.querySelector('.eventdetail__content');
+  }
+  if (!imageCol) {
+    imageCol = element.querySelector('.eventdetail__image');
+  }
+
+  // Table header
   const headerRow = ['Columns (columns17)'];
-  // Table content row: left and right columns
-  const contentRow = [leftCell, rightCell];
+
+  // Table content row: left column is all content, right column is image
+  const contentCell = contentCol ? contentCol : document.createElement('div');
+  const imageCell = imageCol ? imageCol : document.createElement('div');
 
   // Build table
-  const cells = [headerRow, contentRow];
-  const table = WebImporter.DOMUtils.createTable(cells, document);
+  const cells = [
+    headerRow,
+    [contentCell, imageCell]
+  ];
+
+  // Create block table
+  const block = WebImporter.DOMUtils.createTable(cells, document);
 
   // Replace original element
-  element.replaceWith(table);
+  element.replaceWith(block);
 }
