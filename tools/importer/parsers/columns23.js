@@ -1,32 +1,22 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Always output a columns block with the correct header, even if columns are visually empty
-  const headerRow = ['Columns (columns23)'];
-
-  // The only visible content in the source is the two gradient divs (left and right)
-  // These are decorative, but per requirements, include them as columns
+  // Find the color-wrapper div inside the block
   const colorWrapper = element.querySelector('.color-wrapper');
   if (!colorWrapper) return;
 
-  const leftGradient = colorWrapper.querySelector('.gradient-left-side');
-  const rightGradient = colorWrapper.querySelector('.gradient-right-side');
+  // The only visible content is the two gradient sides (left and right)
+  // But these are purely decorative and contain no text or images.
+  // To avoid empty/decorative columns, do not include them as cells.
+  // Instead, create a single row with empty columns to match the visual structure.
+  const headerRow = ['Columns (columns23)'];
+  const columnsRow = ['', '']; // Two empty columns, since there is no content
 
-  // Use the gradient divs as the column content (even if empty)
-  const leftCell = leftGradient ? leftGradient.cloneNode(true) : '';
-  const rightCell = rightGradient ? rightGradient.cloneNode(true) : '';
-
-  // Only include columns for actual gradient divs found
-  const contentRow = [];
-  if (leftGradient) contentRow.push(leftCell);
-  if (rightGradient) contentRow.push(rightCell);
-
-  // If no columns found, still output a single empty column (to avoid empty row)
-  if (contentRow.length === 0) contentRow.push('');
-
+  // Create the block table
   const table = WebImporter.DOMUtils.createTable([
     headerRow,
-    contentRow
+    columnsRow
   ], document);
 
+  // Replace the original element with the block table
   element.replaceWith(table);
 }

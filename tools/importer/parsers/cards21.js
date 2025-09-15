@@ -1,45 +1,47 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper to extract the image (as <picture> or <img>) from a card
-  function extractImage(card) {
-    // Try to find the <picture> element first
-    const picture = card.querySelector('.lp-sticky-card-img picture');
-    if (picture) return picture;
-    // Fallback: try to find an <img> directly
-    const img = card.querySelector('.lp-sticky-card-img img');
-    if (img) return img;
-    return null;
-  }
-
-  // Helper to extract the text content (title and description) from a card
-  function extractTextContent(card) {
-    const content = card.querySelector('.lp-sticky-card-content');
-    if (!content) return '';
-    // We'll include the entire content block (h3 + p)
-    return content;
-  }
-
-  // Find all direct card children
+  // Defensive: get all direct card children
   const cards = Array.from(element.querySelectorAll(':scope > .lp-sticky-card'));
-
-  // Build the table rows
   const rows = [];
-  // Header row as per block requirements
+  // Header row as required
   rows.push(['Cards (cards21)']);
 
-  // Each card becomes a row: [image, text content]
-  cards.forEach((card) => {
-    const image = extractImage(card);
-    const textContent = extractTextContent(card);
+  cards.forEach(card => {
+    // Image cell: find the <img> inside .lp-sticky-card-img
+    const imgWrap = card.querySelector('.lp-sticky-card-img');
+    let imageEl = null;
+    if (imgWrap) {
+      // Use the <picture> element if present, otherwise <img>
+      const picture = imgWrap.querySelector('picture');
+      if (picture) {
+        imageEl = picture;
+      } else {
+        const img = imgWrap.querySelector('img');
+        if (img) imageEl = img;
+      }
+    }
+
+    // Text cell: use the .lp-sticky-card-content block
+    const content = card.querySelector('.lp-sticky-card-content');
+    let textCell;
+    if (content) {
+      // Use heading and paragraph if present
+      const heading = content.querySelector('h3');
+      const para = content.querySelector('p');
+      const cellContent = [];
+      if (heading) cellContent.push(heading);
+      if (para) cellContent.push(para);
+      textCell = cellContent;
+    } else {
+      textCell = '';
+    }
+
     rows.push([
-      image,
-      textContent,
+      imageEl || '',
+      textCell
     ]);
   });
 
-  // Create the table block
   const table = WebImporter.DOMUtils.createTable(rows, document);
-
-  // Replace the original element with the table
   element.replaceWith(table);
 }

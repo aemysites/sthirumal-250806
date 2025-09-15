@@ -1,70 +1,42 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Defensive: Only proceed if element exists
-  if (!element) return;
+  // Helper to extract the image from a card
+  function getImage(cardEl) {
+    const img = cardEl.querySelector('img');
+    return img || null;
+  }
 
-  // Table header row
-  const headerRow = ['Cards (cards6)'];
-  const rows = [headerRow];
+  // Helper to extract the text content from a card (date, title, location)
+  function getTextContent(cardEl) {
+    const content = document.createElement('div');
+    // Date box
+    const dateBox = cardEl.querySelector('.lp__event_month');
+    if (dateBox) {
+      content.appendChild(dateBox.cloneNode(true));
+    }
+    // Details (title, location)
+    const details = cardEl.querySelector('.lp__meetingevent_details');
+    if (details) {
+      content.appendChild(details.cloneNode(true));
+    }
+    return content;
+  }
 
-  // Find all card list items
-  const cardItems = element.querySelectorAll('.lp__list_navigation_section');
+  // Find all cards
+  const cards = Array.from(element.querySelectorAll('.lp__meetingevent_wrapper'));
+  const rows = [];
+  // Header row
+  rows.push(['Cards (cards6)']);
 
-  cardItems.forEach((card) => {
-    // --- IMAGE CELL ---
-    // Find the image container
-    const imgContainer = card.querySelector('.lp__lg_horizontal_img');
-    let imgEl = null;
-    if (imgContainer) {
-      // Prefer the <img> inside <picture>
-      imgEl = imgContainer.querySelector('img');
-    }
-    // Defensive: If no image found, use the whole container
-    const imageCell = imgEl || imgContainer;
-
-    // --- TEXT CELL ---
-    const textContent = [];
-    // Title (as heading)
-    const titleDiv = card.querySelector('.lp__list_navigation_title');
-    if (titleDiv) {
-      // Use <a> as heading
-      const link = titleDiv.querySelector('a');
-      if (link) {
-        // Create heading element
-        const heading = document.createElement('h3');
-        heading.appendChild(link);
-        textContent.push(heading);
-      }
-    }
-    // Subtitle / meta info
-    const hammerDiv = card.querySelector('.lp__hammer');
-    if (hammerDiv) {
-      // Use <div> as-is for subtitle
-      textContent.push(hammerDiv);
-    }
-    // Description
-    const blurbDiv = card.querySelector('.lp__blurb_text');
-    if (blurbDiv) {
-      // Defensive: Only include non-empty paragraphs
-      const paragraphs = Array.from(blurbDiv.querySelectorAll('p')).filter(p => p.textContent.trim() && p.innerHTML.trim() !== '&nbsp;');
-      textContent.push(...paragraphs);
-    }
-    // Call-to-action (use overlay link if present)
-    const overlayLink = card.querySelector('.lp__overlay-link');
-    if (overlayLink) {
-      // Only add if not already included as title
-      if (!titleDiv || !titleDiv.contains(overlayLink)) {
-        textContent.push(overlayLink);
-      }
-    }
-
-    // Add row: [image, text]
-    rows.push([imageCell, textContent]);
+  // Each card is a row: [image, text content]
+  cards.forEach((card) => {
+    const img = getImage(card);
+    const textContent = getTextContent(card);
+    rows.push([img, textContent]);
   });
 
-  // Create block table
+  // Create the block table
   const block = WebImporter.DOMUtils.createTable(rows, document);
-
-  // Replace original element
+  // Replace the original element
   element.replaceWith(block);
 }

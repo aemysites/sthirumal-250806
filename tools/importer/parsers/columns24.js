@@ -1,26 +1,20 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Block header row as per spec
-  const headerRow = ['Columns (columns24)'];
+  // Defensive: get all immediate child divs (each column)
+  const columnDivs = Array.from(element.querySelectorAll(':scope > div'));
 
-  // Select all direct child .text columns
-  const columnDivs = element.querySelectorAll(':scope > .text');
-
-  // Defensive: If no columns found, do nothing
-  if (!columnDivs.length) return;
-
-  // Each column is a cell in the second row, referencing the actual element
-  const columnsRow = Array.from(columnDivs);
+  // Each column's content is the entire child div (preserves formatting and structure)
+  const columnsRow = columnDivs.map((colDiv) => colDiv);
 
   // Build the table rows
-  const tableRows = [
-    headerRow,
-    columnsRow,
+  const cells = [
+    ['Columns (columns24)'], // Header row as required
+    columnsRow,              // Second row: each column as a cell
   ];
 
   // Create the block table
-  const blockTable = WebImporter.DOMUtils.createTable(tableRows, document);
+  const block = WebImporter.DOMUtils.createTable(cells, document);
 
   // Replace the original element with the block table
-  element.replaceWith(blockTable);
+  element.replaceWith(block);
 }

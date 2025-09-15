@@ -1,74 +1,79 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper to extract the image from a card
-  function getCardImage(card) {
-    const imgContainer = card.querySelector('.lp-aca-card-img');
-    if (!imgContainer) return null;
-    // Prefer <img> inside <picture>
-    const img = imgContainer.querySelector('img');
+  // Helper to extract the image (picture or img) from a card
+  function extractImage(card) {
+    // Prefer picture if present, else img
+    const pic = card.querySelector('.lp-aca-card-img picture');
+    if (pic) return pic;
+    const img = card.querySelector('.lp-aca-card-img img');
     if (img) return img;
-    // Fallback: use <picture> itself if no <img>
-    const picture = imgContainer.querySelector('picture');
-    if (picture) return picture;
     return null;
   }
 
-  // Helper to extract the text content from a card
-  function getCardText(card) {
-    const content = card.querySelector('.lp-aca-card-content');
-    if (!content) return document.createElement('div');
-    // Compose a fragment for all text content
-    const frag = document.createElement('div');
-    // Title
-    const title = content.querySelector('.lp-aca-card-title');
-    if (title) {
-      // Use heading text, but preserve link if present
-      const h = document.createElement('strong');
-      const a = title.querySelector('a');
-      if (a) {
-        h.appendChild(a.cloneNode(true));
-      } else {
-        h.textContent = title.textContent;
-      }
-      frag.appendChild(h);
-    }
-    // Description
-    const desc = content.querySelector('.lp-aca-card-description');
-    if (desc) {
-      const p = document.createElement('p');
-      p.textContent = desc.textContent;
-      frag.appendChild(p);
-    }
-    // CTA links (can be direct <a> or inside <ul>/<li>)
-    // Collect all links with class 'lp-aca-card-link' inside content
-    const links = Array.from(content.querySelectorAll('a.lp-aca-card-link'));
-    if (links.length) {
-      const ctaDiv = document.createElement('div');
-      links.forEach(link => {
-        // If multiple links, separate with space
-        const cta = document.createElement('span');
-        cta.appendChild(link.cloneNode(true));
-        ctaDiv.appendChild(cta);
-      });
-      frag.appendChild(ctaDiv);
-    }
-    return frag;
+  // Helper to extract the tag (e.g., "New for 2025") if present
+  function extractTag(card) {
+    const tag = card.querySelector('.lp-aca-card-tag');
+    return tag ? tag : null;
   }
 
-  // Find all cards in the block
+  // Helper to extract the content (title, desc, cta)
+  function extractContent(card) {
+    const contentDiv = card.querySelector('.lp-aca-card-content');
+    if (!contentDiv) return null;
+    const content = [];
+    // Title (h3 with link)
+    const title = contentDiv.querySelector('.lp-aca-card-title');
+    if (title) content.push(title);
+    // Description
+    const desc = contentDiv.querySelector('.lp-aca-card-description');
+    if (desc) content.push(desc);
+    // CTA(s)
+    // There may be multiple links (e.g., in a ul), or a single link
+    const links = Array.from(contentDiv.querySelectorAll('.lp-aca-card-link'));
+    if (links.length > 0) {
+      // If links are in a ul/li, group them in a div for layout
+      const parentUl = contentDiv.querySelector('ul');
+      if (parentUl) {
+        // Wrap all links in a div
+        const ctaDiv = document.createElement('div');
+        links.forEach(link => {
+          ctaDiv.appendChild(link);
+        });
+        content.push(ctaDiv);
+      } else {
+        // Just add the single link
+        content.push(links[0]);
+      }
+    }
+    return content;
+  }
+
+  // Find all cards in the section
   const cards = Array.from(element.querySelectorAll('.lp-aca-card'));
+
+  // Build the table rows
   const rows = [];
   // Header row
   rows.push(['Cards (cards29)']);
-  // Each card: [image, text]
+
+  // For each card, build a row: [image+tag, content]
   cards.forEach(card => {
-    const img = getCardImage(card);
-    const text = getCardText(card);
-    rows.push([img, text]);
+    // Image cell: picture (or img), plus tag if present
+    const img = extractImage(card);
+    const tag = extractTag(card);
+    const imgCell = [];
+    if (img) imgCell.push(img);
+    if (tag) imgCell.push(tag);
+    // Content cell: title, desc, cta(s)
+    const content = extractContent(card);
+    rows.push([
+      imgCell.length === 1 ? imgCell[0] : imgCell, // single element or array
+      content && content.length === 1 ? content[0] : content // single element or array
+    ]);
   });
 
-  // Create the block table
-  const block = WebImporter.DOMUtils.createTable(rows, document);
+  // Create the table block
+  const table = WebImporter.DOMUtils.createTable(rows, document);
   // Replace the original element
-  element.replaceWith(block);
+  element.replaceWith(table);
 }
