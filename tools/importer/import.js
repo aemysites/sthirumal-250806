@@ -11,18 +11,16 @@
  */
 /* global WebImporter */
 /* eslint-disable no-console */
-import columns2Parser from './parsers/columns2.js';
-import columns4Parser from './parsers/columns4.js';
-import columns1Parser from './parsers/columns1.js';
 import columns3Parser from './parsers/columns3.js';
-import columns10Parser from './parsers/columns10.js';
+import columns2Parser from './parsers/columns2.js';
+import columns1Parser from './parsers/columns1.js';
+import columns4Parser from './parsers/columns4.js';
 import columns11Parser from './parsers/columns11.js';
-import cards5Parser from './parsers/cards5.js';
-import columns17Parser from './parsers/columns17.js';
 import columns20Parser from './parsers/columns20.js';
-import columns13Parser from './parsers/columns13.js';
-import cards6Parser from './parsers/cards6.js';
+import columns10Parser from './parsers/columns10.js';
 import cards21Parser from './parsers/cards21.js';
+import cards5Parser from './parsers/cards5.js';
+import cards6Parser from './parsers/cards6.js';
 import columns24Parser from './parsers/columns24.js';
 import columns28Parser from './parsers/columns28.js';
 import cards29Parser from './parsers/cards29.js';
@@ -43,18 +41,16 @@ import {
 
 const parsers = {
   metadata: metadataParser,
-  columns2: columns2Parser,
-  columns4: columns4Parser,
-  columns1: columns1Parser,
   columns3: columns3Parser,
-  columns10: columns10Parser,
+  columns2: columns2Parser,
+  columns1: columns1Parser,
+  columns4: columns4Parser,
   columns11: columns11Parser,
-  cards5: cards5Parser,
-  columns17: columns17Parser,
   columns20: columns20Parser,
-  columns13: columns13Parser,
-  cards6: cards6Parser,
+  columns10: columns10Parser,
   cards21: cards21Parser,
+  cards5: cards5Parser,
+  cards6: cards6Parser,
   columns24: columns24Parser,
   columns28: columns28Parser,
   cards29: cards29Parser,

@@ -1,47 +1,45 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Defensive: get all direct card children
+  // Defensive: Get all immediate card children
   const cards = Array.from(element.querySelectorAll(':scope > .lp-sticky-card'));
   const rows = [];
-  // Header row as required
-  rows.push(['Cards (cards21)']);
+  // Always use the required header row
+  const headerRow = ['Cards (cards21)'];
+  rows.push(headerRow);
 
   cards.forEach(card => {
-    // Image cell: find the <img> inside .lp-sticky-card-img
-    const imgWrap = card.querySelector('.lp-sticky-card-img');
+    // Defensive: Get overlay, image, and content
+    const overlay = card.querySelector('.lp-sticky-card-overlay');
+    if (!overlay) return;
+    const imgWrap = overlay.querySelector('.lp-sticky-card-img');
+    const contentWrap = overlay.querySelector('.lp-sticky-card-content');
+
+    // Find the image (use <picture> if present, else <img>)
     let imageEl = null;
     if (imgWrap) {
-      // Use the <picture> element if present, otherwise <img>
-      const picture = imgWrap.querySelector('picture');
-      if (picture) {
-        imageEl = picture;
-      } else {
-        const img = imgWrap.querySelector('img');
-        if (img) imageEl = img;
-      }
+      imageEl = imgWrap.querySelector('picture') || imgWrap.querySelector('img');
     }
+    // Defensive: If no image, skip this card
+    if (!imageEl) return;
 
-    // Text cell: use the .lp-sticky-card-content block
-    const content = card.querySelector('.lp-sticky-card-content');
-    let textCell;
-    if (content) {
-      // Use heading and paragraph if present
-      const heading = content.querySelector('h3');
-      const para = content.querySelector('p');
-      const cellContent = [];
-      if (heading) cellContent.push(heading);
-      if (para) cellContent.push(para);
-      textCell = cellContent;
-    } else {
-      textCell = '';
+    // Get the heading and paragraph
+    let titleEl = null;
+    let descEl = null;
+    if (contentWrap) {
+      titleEl = contentWrap.querySelector('h3');
+      descEl = contentWrap.querySelector('p');
     }
+    // Compose the text cell
+    const textCell = [];
+    if (titleEl) textCell.push(titleEl);
+    if (descEl) textCell.push(descEl);
 
-    rows.push([
-      imageEl || '',
-      textCell
-    ]);
+    // Push row: [image, text]
+    rows.push([imageEl, textCell]);
   });
 
-  const table = WebImporter.DOMUtils.createTable(rows, document);
-  element.replaceWith(table);
+  // Create the block table
+  const block = WebImporter.DOMUtils.createTable(rows, document);
+  // Replace the original element
+  element.replaceWith(block);
 }

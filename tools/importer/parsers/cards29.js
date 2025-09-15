@@ -2,78 +2,69 @@
 export default function parse(element, { document }) {
   // Helper to extract the image (picture or img) from a card
   function extractImage(card) {
-    // Prefer picture if present, else img
-    const pic = card.querySelector('.lp-aca-card-img picture');
-    if (pic) return pic;
-    const img = card.querySelector('.lp-aca-card-img img');
+    const imgContainer = card.querySelector('.lp-aca-card-img');
+    if (!imgContainer) return null;
+    // Prefer <picture>, fallback to <img>
+    const picture = imgContainer.querySelector('picture');
+    if (picture) return picture;
+    const img = imgContainer.querySelector('img');
     if (img) return img;
     return null;
   }
 
-  // Helper to extract the tag (e.g., "New for 2025") if present
-  function extractTag(card) {
-    const tag = card.querySelector('.lp-aca-card-tag');
-    return tag ? tag : null;
-  }
-
-  // Helper to extract the content (title, desc, cta)
-  function extractContent(card) {
-    const contentDiv = card.querySelector('.lp-aca-card-content');
-    if (!contentDiv) return null;
-    const content = [];
-    // Title (h3 with link)
-    const title = contentDiv.querySelector('.lp-aca-card-title');
-    if (title) content.push(title);
+  // Helper to extract the text content (title, description, CTA) from a card
+  function extractTextContent(card) {
+    const content = card.querySelector('.lp-aca-card-content');
+    if (!content) return null;
+    const frag = document.createElement('div');
+    // Title (h3 > a)
+    const title = content.querySelector('.lp-aca-card-title');
+    if (title) {
+      frag.appendChild(title);
+    }
     // Description
-    const desc = contentDiv.querySelector('.lp-aca-card-description');
-    if (desc) content.push(desc);
-    // CTA(s)
-    // There may be multiple links (e.g., in a ul), or a single link
-    const links = Array.from(contentDiv.querySelectorAll('.lp-aca-card-link'));
-    if (links.length > 0) {
-      // If links are in a ul/li, group them in a div for layout
-      const parentUl = contentDiv.querySelector('ul');
-      if (parentUl) {
-        // Wrap all links in a div
-        const ctaDiv = document.createElement('div');
-        links.forEach(link => {
-          ctaDiv.appendChild(link);
-        });
-        content.push(ctaDiv);
+    const desc = content.querySelector('.lp-aca-card-description');
+    if (desc) {
+      frag.appendChild(desc);
+    }
+    // CTAs: .lp-aca-card-link (may be direct child <a>, or inside <ul><li><a>)
+    const ctas = content.querySelectorAll('.lp-aca-card-link');
+    if (ctas.length > 0) {
+      if (ctas.length === 1) {
+        frag.appendChild(ctas[0]);
       } else {
-        // Just add the single link
-        content.push(links[0]);
+        const ctaDiv = document.createElement('div');
+        ctas.forEach((cta, idx) => {
+          ctaDiv.appendChild(cta);
+          if (idx < ctas.length - 1) {
+            ctaDiv.appendChild(document.createTextNode(' '));
+          }
+        });
+        frag.appendChild(ctaDiv);
       }
     }
-    return content;
+    return frag;
   }
 
-  // Find all cards in the section
-  const cards = Array.from(element.querySelectorAll('.lp-aca-card'));
+  // Find all .lp-aca-card elements in the section
+  const cards = element.querySelectorAll('.lp-aca-card');
 
   // Build the table rows
-  const rows = [];
-  // Header row
-  rows.push(['Cards (cards29)']);
+  const headerRow = ['Cards (cards29)'];
+  const rows = [headerRow];
 
-  // For each card, build a row: [image+tag, content]
-  cards.forEach(card => {
-    // Image cell: picture (or img), plus tag if present
+  cards.forEach((card) => {
     const img = extractImage(card);
-    const tag = extractTag(card);
-    const imgCell = [];
-    if (img) imgCell.push(img);
-    if (tag) imgCell.push(tag);
-    // Content cell: title, desc, cta(s)
-    const content = extractContent(card);
+    const textContent = extractTextContent(card);
     rows.push([
-      imgCell.length === 1 ? imgCell[0] : imgCell, // single element or array
-      content && content.length === 1 ? content[0] : content // single element or array
+      img,
+      textContent
     ]);
   });
 
-  // Create the table block
+  // Create the block table
   const table = WebImporter.DOMUtils.createTable(rows, document);
-  // Replace the original element
+
+  // Replace the original element with the table
   element.replaceWith(table);
 }
