@@ -36,7 +36,7 @@
 @font-face {
   font-family:"Open Sans Fallback";
   font-style:normal;
-  font-weight:600;
+  font-weight:700;
   src:local("Arial Bold");
   ascent-override:109.90%;
   descent-override:30.12%;
@@ -47,12 +47,12 @@
 @font-face {
   font-family:"Open Sans Fallback";
   font-style:normal;
-  font-weight:400;
-  src:local("Arial");
-  ascent-override:101.58%;
-  descent-override:27.84%;
+  font-weight:600;
+  src:local("Arial Bold");
+  ascent-override:109.90%;
+  descent-override:30.12%;
   line-gap-override:0.00%;
-  size-adjust:105.22%;
+  size-adjust:97.26%;
 }
 
 @font-face {
@@ -69,12 +69,12 @@
 @font-face {
   font-family:"Open Sans Fallback";
   font-style:normal;
-  font-weight:700;
-  src:local("Arial Bold");
-  ascent-override:109.90%;
-  descent-override:30.12%;
+  font-weight:400;
+  src:local("Arial");
+  ascent-override:101.58%;
+  descent-override:27.84%;
   line-gap-override:0.00%;
-  size-adjust:97.26%;
+  size-adjust:105.22%;
 }
 
 @font-face {
