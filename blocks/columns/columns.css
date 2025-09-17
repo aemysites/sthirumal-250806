@@ -761,3 +761,142 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+
+
+.columns.columns20 > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (width >= 900px) {
+  .columns.columns20 > div {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+}
+
+/* Column Styling */
+.columns.columns20 > div > div {
+  background: #fff;
+  padding: 40px 60px 36px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  height: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* --- ICON + TITLE "ROW" --- */
+.columns.columns20 > div > div > .button-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Move the icon into the "row" with the title using negative margin and float */
+.columns.columns20 > div > div > p:first-child {
+  display: flex;
+  align-items: center;
+  float: left;
+  margin: 0 12px 0 0;
+  padding: 0;
+}
+
+.columns.columns20 > div > div > p:first-child img {
+  width: 55px;
+  height: 55px;
+  min-width: 55px;
+  min-height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #036;
+  display: inline-block;
+  box-shadow: none;
+  vertical-align: middle;
+}
+
+/* The title (button container anchor) as heading */
+.columns.columns20 > div > div > .button-container a.button {
+  display: inline-block;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #036;
+  text-align: left;
+  pointer-events: none;
+  cursor: default;
+  line-height: 1.2;
+  max-width: unset;
+  overflow: visible;
+  white-space: normal;
+}
+
+/* Reset float after icon + title row */
+.columns.columns20 > div > div > .button-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* --- MAIN CONTENT --- */
+.columns.columns20 > div > div > p {
+  margin: 0 0 14px;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: left;
+  max-width: 100%;
+  padding: 0;
+}
+
+.columns.columns20 > div > div > p strong {
+  display: block;
+  color: #036;
+  font-weight: 700;
+  margin-bottom: 2px;
+  font-size: 17px;
+}
+
+/* Links */
+.columns.columns20 > div > div > p a {
+  color: #06c;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.columns.columns20 > div > div > p a:hover, 
+.columns.columns20 > div > div > p a:focus {
+  color: #036;
+  text-decoration: underline;
+}
+
+/* Tighter vertical gap between title and first paragraph */
+.columns.columns20 > div > div > .button-container + p {
+  margin-top: -2px;
+}
+
+/* Responsive adjustments */
+@media (width <= 899px) {
+  .columns.columns20 > div {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+.columns.columns20 > div > div {
+    padding: 24px 12px 18px;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Prevent text overflow */
