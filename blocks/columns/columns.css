@@ -776,7 +776,6 @@
   }
 }
 
-/* Column Styling */
 .columns.columns20 > div > div {
   background: #fff;
   padding: 40px 60px 36px;
@@ -790,7 +789,6 @@
   overflow-wrap: break-word;
 }
 
-/* --- ICON + TITLE "ROW" --- */
 .columns.columns20 > div > div > .button-container {
   display: flex;
   align-items: center;
@@ -799,7 +797,6 @@
   padding-top: 0;
 }
 
-/* Move the icon into the "row" with the title using negative margin and float */
 .columns.columns20 > div > div > p:first-child {
   display: flex;
   align-items: center;
@@ -821,7 +818,6 @@
   vertical-align: middle;
 }
 
-/* The title (button container anchor) as heading */
 .columns.columns20 > div > div > .button-container a.button {
   display: inline-block;
   background: none;
@@ -842,14 +838,12 @@
   white-space: normal;
 }
 
-/* Reset float after icon + title row */
 .columns.columns20 > div > div > .button-container::after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* --- MAIN CONTENT --- */
 .columns.columns20 > div > div > p {
   margin: 0 0 14px;
   color: #333;
@@ -868,7 +862,6 @@
   font-size: 17px;
 }
 
-/* Links */
 .columns.columns20 > div > div > p a {
   color: #06c;
   font-weight: 700;
@@ -881,12 +874,10 @@
   text-decoration: underline;
 }
 
-/* Tighter vertical gap between title and first paragraph */
 .columns.columns20 > div > div > .button-container + p {
   margin-top: -2px;
 }
 
-/* Responsive adjustments */
 @media (width <= 899px) {
   .columns.columns20 > div {
     grid-template-columns: 1fr;
@@ -899,4 +890,78 @@
   }
 }
 
-/* Prevent text overflow */
+
+.columns.columns23.block.columns-2-cols {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  /* Layered background for flush black bar and shadow/fade */
+  background: 
+    linear-gradient(to bottom, #000 0, #000 32px, rgb(0 0 0 / 10%) 36px, #edf3f8 48px, #edf3f8 100%);
+}
+
+/* Layout: circles in a flex row with large gap and ample side padding */
+.columns.columns23.block.columns-2-cols > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 472px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 48px; /* start circles closer to bar */
+  padding-bottom: 32px;
+  gap: 128px; /* Increase gap between circles */
+}
+
+/* Left circle: smaller, softer, more margin from left */
+.columns.columns23.block.columns-2-cols > div > div:first-child {
+  width: 280px;
+  height: 280px;
+  background: #7fc1c7;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.78;
+  margin-left: 72px;
+  margin-right: 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* Right circle: smaller, softer, more margin from right */
+.columns.columns23.block.columns-2-cols > div > div:last-child {
+  width: 280px;
+  height: 280px;
+  background: #929ed8;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.78;
+  margin-right: 72px;
+  margin-left: 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* Responsive: stack circles vertically, shrink, and soften */
+@media (width <= 900px) {
+  .columns.columns23.block.columns-2-cols > div {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 0;
+    padding: 32px 0 24px;
+    gap: 48px;
+  }
+
+  .columns.columns23.block.columns-2-cols > div > div {
+    width: 140px;
+    height: 140px;
+    margin: 0;
+    filter: blur(44px);
+    opacity: 0.78;
+  }
+}
