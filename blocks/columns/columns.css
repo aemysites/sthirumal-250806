@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .columns > div {
   display: flex;
   flex-direction: column;
@@ -29,5 +30,160 @@
   .columns > div > div {
     flex: 1;
     order: unset;
+  }
+}
+
+
+.columns.columns1 {
+  background: #003049;
+  padding: 0 8px;
+}
+
+.columns.columns1 > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 56px;
+  min-height: 56px;
+  width: 100%;
+  gap: 0;
+}
+
+/* --- Logo block (first child) --- */
+.columns.columns1 > div > div:first-child {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  margin-right: 8px;
+  padding-left: 0;
+}
+
+.columns.columns1 > div > div:first-child .columns-img-col {
+  margin-right: 2px; /* even tighter spacing between icon and text */
+  display: flex;
+  align-items: center;
+}
+
+/* --- Divider between logo and links (using border-left instead of pseudo) --- */
+.columns.columns1 > div > div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  border-left: 1px solid #245474;
+  padding-left: 18px; /* space after divider */
+  margin-right: 12px;
+}
+
+.columns.columns1 > div > div:nth-child(2) ul {
+  display: flex;
+  flex-direction: row;
+  gap: 10px; /* tighter spacing between links */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columns.columns1 > div > div:nth-child(2) ul li {
+  margin: 0;
+  padding: 0;
+}
+
+.columns.columns1 > div > div:nth-child(2) ul li a {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  padding: 0 1px;
+  transition: color 0.2s;
+}
+
+.columns.columns1 > div > div:nth-child(2) ul li a:hover,
+.columns.columns1 > div > div:nth-child(2) ul li a:focus {
+  color: #aad8ff;
+}
+
+/* --- Social icons block (third child) --- */
+.columns.columns1 > div > div:last-child {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* force flush right */
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.columns.columns1 > div > div:last-child ul {
+  display: flex;
+  flex-direction: row;
+  gap: 8px; /* tight icon gap */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columns.columns1 > div > div:last-child ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.columns.columns1 > div > div:last-child ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #245474;
+  transition: background 0.2s;
+}
+
+.columns.columns1 > div > div:last-child ul li a:hover,
+.columns.columns1 > div > div:last-child ul li a:focus {
+  background: #156fa3;
+}
+
+.columns.columns1 > div > div:last-child ul li img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+/* --- Remove default ul/li spacing everywhere --- */
+.columns.columns1 ul,
+.columns.columns1 li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* --- Responsive: Stack on small screens --- */
+@media (width <= 899px) {
+  .columns.columns1 > div {
+    flex-direction: column;
+    height: auto;
+    min-height: unset;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .columns.columns1 > div > div {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border-left: none;
+  }
+
+  .columns.columns1 > div > div:nth-child(2) {
+    padding-left: 0;
+  }
+
+  .columns.columns1 > div > div:nth-child(2) ul,
+  .columns.columns1 > div > div:last-child ul {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
   }
 }
